@@ -4,9 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import ModernLoadingScreen from '@/components/ModernLoadingScreen';
 import exampleImage from '@assets/e73c5cc3ec9ce4c8d6e28652542b6875753a226b_1754922211029.png';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -48,18 +50,24 @@ export default function Home() {
     }
   };
 
+  if (isLoading) {
+    return <ModernLoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen text-white relative">
+      {/* Purple Gradient Background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-purple-800 -z-10"></div>
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/20">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
               <div className="text-2xl font-bold gradient-text">
                 CookPhish
               </div>
-              <Badge variant="secondary" className="bg-purple-100 text-purple-700">
+              <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
                 v3.0.0
               </Badge>
             </div>
@@ -74,8 +82,8 @@ export default function Home() {
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`hover:text-purple-600 transition-colors duration-300 ${
-                    activeSection === id ? 'text-purple-600 font-medium' : 'text-gray-600'
+                  className={`hover:text-yellow-300 transition-colors duration-300 ${
+                    activeSection === id ? 'text-yellow-300 font-medium' : 'text-white/80'
                   }`}
                   data-testid={`nav-${id}`}
                 >
@@ -85,7 +93,7 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" asChild>
+              <Button variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10" asChild>
                 <a 
                   href="https://github.com/technicalwhitehat-yt/CookPhish" 
                   target="_blank"
@@ -96,7 +104,7 @@ export default function Home() {
                   GitHub
                 </a>
               </Button>
-              <Button size="sm" className="purple-gradient text-white" asChild>
+              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30" asChild>
                 <a 
                   href="https://youtube.com/@technicalwhitehat" 
                   target="_blank"
@@ -125,30 +133,30 @@ export default function Home() {
               className="space-y-8"
             >
               <div className="space-y-4">
-                <Badge className="bg-purple-100 text-purple-700 mb-4">
+                <Badge className="bg-white/20 text-white border-white/30 mb-4">
                   🔒 Cybersecurity Tool
                 </Badge>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="gradient-text">CookPhish</span>
+                  <span className="text-white drop-shadow-2xl">CookPhish</span>
                   <br />
-                  <span className="text-gray-700">Advanced Framework</span>
+                  <span className="text-white/90">Advanced Framework</span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-white/80 leading-relaxed">
                   Professional phishing simulation tool for cybersecurity education and ethical hacking training. Created by Technical White Hat from India.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Badge variant="outline" className="text-sm">Instagram Clone</Badge>
-                <Badge variant="outline" className="text-sm">2FA Bypass</Badge>
-                <Badge variant="outline" className="text-sm">IP Logging</Badge>
-                <Badge variant="outline" className="text-sm">Multi-Platform</Badge>
+                <Badge variant="outline" className="text-sm border-white/30 text-white">Instagram Clone</Badge>
+                <Badge variant="outline" className="text-sm border-white/30 text-white">2FA Bypass</Badge>
+                <Badge variant="outline" className="text-sm border-white/30 text-white">IP Logging</Badge>
+                <Badge variant="outline" className="text-sm border-white/30 text-white">Multi-Platform</Badge>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="purple-gradient text-white"
+                  className="bg-white text-purple-600 hover:bg-white/90 font-bold"
                   onClick={() => scrollToSection('installation')}
                   data-testid="get-started-btn"
                 >
@@ -158,6 +166,7 @@ export default function Home() {
                 <Button 
                   variant="outline" 
                   size="lg"
+                  className="border-white/30 text-white hover:bg-white/10"
                   onClick={() => scrollToSection('features')}
                   data-testid="learn-more-btn"
                 >
@@ -167,12 +176,12 @@ export default function Home() {
               </div>
 
               <div className="flex items-center space-x-6 pt-4">
-                <div className="flex items-center space-x-2 text-sm text-gray-500">
-                  <i className="fas fa-shield-alt text-green-500"></i>
+                <div className="flex items-center space-x-2 text-sm text-white/80">
+                  <i className="fas fa-shield-alt text-green-400"></i>
                   <span>Ethical Use Only</span>
                 </div>
-                <div className="flex items-center space-x-2 text-sm text-gray-500">
-                  <i className="fas fa-code-branch text-blue-500"></i>
+                <div className="flex items-center space-x-2 text-sm text-white/80">
+                  <i className="fas fa-code-branch text-blue-400"></i>
                   <span>Open Source</span>
                 </div>
               </div>
@@ -196,24 +205,24 @@ export default function Home() {
               
               {/* Floating Cards */}
               <motion.div 
-                className="absolute -top-6 -left-6 glass-card p-4"
+                className="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="flex items-center space-x-2 text-sm">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Framework Active</span>
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-white font-medium">Framework Active</span>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="absolute -bottom-6 -right-6 glass-card p-4"
+                className="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">2FA+</div>
-                  <div className="text-xs text-gray-600">Bypass Modes</div>
+                  <div className="text-2xl font-bold text-white">2FA+</div>
+                  <div className="text-xs text-white/80">Bypass Modes</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -222,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-white">
+      <section id="features" className="py-20 bg-black/10 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <motion.div 
             className="text-center mb-16"
@@ -230,13 +239,13 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Badge className="bg-purple-100 text-purple-700 mb-4">
+            <Badge className="bg-white/20 text-white border-white/30 mb-4">
               ✨ Key Features
             </Badge>
             <h2 className="text-4xl font-bold mb-4">
-              Professional <span className="gradient-text">Security Testing</span>
+              Professional <span className="text-white drop-shadow-2xl">Security Testing</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
               Comprehensive phishing simulation framework with advanced features for cybersecurity professionals
             </p>
           </motion.div>
@@ -293,13 +302,13 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="modern-card h-full" data-testid={`feature-card-${index}`}>
+                <Card className="bg-white/10 backdrop-blur-md border-white/20 h-full" data-testid={`feature-card-${index}`}>
                   <CardContent className="p-8">
-                    <div className={`w-12 h-12 ${feature.bgColor} rounded-xl flex items-center justify-center mb-6`}>
+                    <div className={`w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6`}>
                       <i className={`${feature.icon} text-xl ${feature.color}`}></i>
                     </div>
-                    <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
+                    <p className="text-white/80 leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -309,7 +318,7 @@ export default function Home() {
       </section>
 
       {/* Installation Section */}
-      <section id="installation" className="py-20 bg-gray-50">
+      <section id="installation" className="py-20 bg-white/5 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <motion.div 
             className="text-center mb-16"
@@ -317,13 +326,13 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Badge className="bg-green-100 text-green-700 mb-4">
+            <Badge className="bg-green-400/20 text-green-300 border-green-400/30 mb-4">
               📦 Installation
             </Badge>
             <h2 className="text-4xl font-bold mb-4">
-              Quick <span className="gradient-text">Setup Guide</span>
+              Quick <span className="text-white drop-shadow-2xl">Setup Guide</span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-white/80">
               Get CookPhish running on your system in just a few commands
             </p>
           </motion.div>
@@ -335,15 +344,15 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="modern-card">
+              <Card className="bg-white/10 backdrop-blur-md border-white/20">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mr-4">
-                      <i className="fab fa-android text-xl text-green-500"></i>
+                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mr-4">
+                      <i className="fab fa-android text-xl text-green-400"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Termux (Android)</h3>
-                      <p className="text-sm text-gray-500">For Android devices</p>
+                      <h3 className="text-xl font-bold text-white">Termux (Android)</h3>
+                      <p className="text-sm text-white/60">For Android devices</p>
                     </div>
                   </div>
                   
@@ -357,9 +366,9 @@ export default function Home() {
                     ].map((command, index) => (
                       <div key={index} className="code-block p-4 group relative">
                         <div className="flex items-center justify-between">
-                          <code className="text-sm text-gray-700 font-mono flex-1">{command}</code>
+                          <code className="text-sm text-green-300 font-mono flex-1">{command}</code>
                           <button 
-                            className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-purple-600 transition-all ml-4" 
+                            className="opacity-0 group-hover:opacity-100 text-white/60 hover:text-white transition-all ml-4" 
                             onClick={() => copyToClipboard(command)}
                             data-testid={`copy-termux-${index}`}
                           >
@@ -379,15 +388,15 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="modern-card">
+              <Card className="bg-white/10 backdrop-blur-md border-white/20">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mr-4">
-                      <i className="fab fa-linux text-xl text-blue-500"></i>
+                    <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mr-4">
+                      <i className="fab fa-linux text-xl text-blue-400"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Kali Linux / Debian</h3>
-                      <p className="text-sm text-gray-500">For Linux systems</p>
+                      <h3 className="text-xl font-bold text-white">Kali Linux / Debian</h3>
+                      <p className="text-sm text-white/60">For Linux systems</p>
                     </div>
                   </div>
                   
@@ -401,9 +410,9 @@ export default function Home() {
                     ].map((command, index) => (
                       <div key={index} className="code-block p-4 group relative">
                         <div className="flex items-center justify-between">
-                          <code className="text-sm text-gray-700 font-mono flex-1">{command}</code>
+                          <code className="text-sm text-blue-300 font-mono flex-1">{command}</code>
                           <button 
-                            className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-purple-600 transition-all ml-4" 
+                            className="opacity-0 group-hover:opacity-100 text-white/60 hover:text-white transition-all ml-4" 
                             onClick={() => copyToClipboard(command)}
                             data-testid={`copy-kali-${index}`}
                           >
@@ -425,23 +434,23 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="modern-card">
+            <Card className="bg-white/10 backdrop-blur-md border-white/20">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center mr-4">
-                    <i className="fas fa-cog text-xl text-yellow-500"></i>
+                  <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <i className="fas fa-cog text-xl text-yellow-400"></i>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold">Dependencies</h3>
-                    <p className="text-sm text-gray-500">Install required packages</p>
+                    <h3 className="text-xl font-bold text-white">Dependencies</h3>
+                    <p className="text-sm text-white/60">Install required packages</p>
                   </div>
                 </div>
                 
                 <div className="code-block p-4 group relative">
                   <div className="flex items-center justify-between">
-                    <code className="text-sm text-gray-700 font-mono flex-1">pip install -r requirements.txt</code>
+                    <code className="text-sm text-yellow-300 font-mono flex-1">pip install -r requirements.txt</code>
                     <button 
-                      className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-purple-600 transition-all ml-4" 
+                      className="opacity-0 group-hover:opacity-100 text-white/60 hover:text-white transition-all ml-4" 
                       onClick={() => copyToClipboard('pip install -r requirements.txt')}
                       data-testid="copy-requirements"
                     >
@@ -456,7 +465,7 @@ export default function Home() {
       </section>
 
       {/* Usage Section */}
-      <section id="usage" className="py-20 bg-white">
+      <section id="usage" className="py-20 bg-black/10 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <motion.div 
             className="text-center mb-16"
@@ -464,13 +473,13 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Badge className="bg-blue-100 text-blue-700 mb-4">
+            <Badge className="bg-blue-400/20 text-blue-300 border-blue-400/30 mb-4">
               🚀 Usage Guide
             </Badge>
             <h2 className="text-4xl font-bold mb-4">
-              How to <span className="gradient-text">Use CookPhish</span>
+              How to <span className="text-white drop-shadow-2xl">Use CookPhish</span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-white/80">
               Step-by-step guide to running successful phishing simulations
             </p>
           </motion.div>
@@ -510,15 +519,15 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="modern-card h-full">
+                  <Card className="bg-white/10 backdrop-blur-md border-white/20 h-full">
                     <CardContent className="p-8">
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-12 h-12 purple-gradient rounded-xl flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center text-white font-bold">
                           {item.step}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                          <p className="text-gray-600">{item.description}</p>
+                          <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
+                          <p className="text-white/80">{item.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -531,7 +540,7 @@ export default function Home() {
       </section>
 
       {/* Author Section */}
-      <section id="author" className="py-20 bg-gray-50">
+      <section id="author" className="py-20 bg-white/5 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <motion.div 
             className="max-w-4xl mx-auto text-center"
@@ -539,19 +548,19 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Badge className="bg-purple-100 text-purple-700 mb-8">
+            <Badge className="bg-purple-400/20 text-purple-300 border-purple-400/30 mb-8">
               👨‍💻 Author Information
             </Badge>
             
-            <Card className="modern-card">
+            <Card className="bg-white/10 backdrop-blur-md border-white/20">
               <CardContent className="p-12">
                 <div className="mb-8">
-                  <div className="w-24 h-24 purple-gradient rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">
+                  <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">
                     TWH
                   </div>
-                  <h2 className="text-3xl font-bold mb-4">Technical White Hat</h2>
-                  <p className="text-xl text-gray-600 mb-6">Cybersecurity Researcher & Ethical Hacker from India</p>
-                  <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                  <h2 className="text-3xl font-bold mb-4 text-white">Technical White Hat</h2>
+                  <p className="text-xl text-white/80 mb-6">Cybersecurity Researcher & Ethical Hacker from India</p>
+                  <p className="text-white/70 leading-relaxed max-w-2xl mx-auto">
                     Passionate about cybersecurity education and ethical hacking. CookPhish is designed specifically 
                     for educational purposes, security training, and authorized penetration testing to help security 
                     professionals understand and defend against phishing attacks.
@@ -561,18 +570,18 @@ export default function Home() {
                 <Separator className="my-8" />
 
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
                     <a 
                       href="https://youtube.com/@technicalwhitehat" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-youtube"
                     >
-                      <i className="fab fa-youtube text-red-500 mr-2"></i>
+                      <i className="fab fa-youtube text-red-400 mr-2"></i>
                       YouTube Channel
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
                     <a 
                       href="https://instagram.com/technicalwhitehat" 
                       target="_blank"
@@ -583,25 +592,25 @@ export default function Home() {
                       Instagram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
                     <a 
                       href="https://t.me/technicalwhitehat" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-telegram"
                     >
-                      <i className="fab fa-telegram text-blue-500 mr-2"></i>
+                      <i className="fab fa-telegram text-blue-400 mr-2"></i>
                       Telegram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
                     <a 
                       href="https://github.com/technicalwhitehat-yt" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-github"
                     >
-                      <i className="fab fa-github text-gray-700 mr-2"></i>
+                      <i className="fab fa-github text-white mr-2"></i>
                       GitHub
                     </a>
                   </Button>
@@ -613,7 +622,7 @@ export default function Home() {
       </section>
 
       {/* Security Education Section */}
-      <section className="py-20 bg-red-50 border-t-2 border-red-200">
+      <section className="py-20 bg-red-500/20 backdrop-blur-sm border-t-2 border-red-400/30">
         <div className="container mx-auto px-6">
           <motion.div 
             className="max-w-4xl mx-auto text-center"
@@ -622,34 +631,34 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <div className="mb-8">
-              <i className="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"></i>
-              <h2 className="text-3xl font-bold text-red-800 mb-4">⚠️ Ethical Use Only</h2>
-              <p className="text-lg text-red-700 leading-relaxed">
+              <i className="fas fa-exclamation-triangle text-4xl text-red-300 mb-4"></i>
+              <h2 className="text-3xl font-bold text-white mb-4">⚠️ Ethical Use Only</h2>
+              <p className="text-lg text-white/90 leading-relaxed">
                 CookPhish is strictly designed for <strong>cybersecurity education</strong>, <strong>authorized penetration testing</strong>, 
                 and <strong>security awareness training</strong>. Any illegal or unauthorized use is prohibited and against the tool's purpose.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border-red-200 bg-white">
+              <Card className="border-red-400/30 bg-white/10 backdrop-blur-md">
                 <CardContent className="p-6 text-center">
-                  <i className="fas fa-graduation-cap text-2xl text-red-500 mb-3"></i>
-                  <h3 className="font-bold text-red-800">Educational Purpose</h3>
-                  <p className="text-sm text-red-600">Learn about phishing techniques and defense mechanisms</p>
+                  <i className="fas fa-graduation-cap text-2xl text-red-300 mb-3"></i>
+                  <h3 className="font-bold text-white">Educational Purpose</h3>
+                  <p className="text-sm text-white/80">Learn about phishing techniques and defense mechanisms</p>
                 </CardContent>
               </Card>
-              <Card className="border-red-200 bg-white">
+              <Card className="border-red-400/30 bg-white/10 backdrop-blur-md">
                 <CardContent className="p-6 text-center">
-                  <i className="fas fa-shield-alt text-2xl text-red-500 mb-3"></i>
-                  <h3 className="font-bold text-red-800">Authorized Testing</h3>
-                  <p className="text-sm text-red-600">Only use with proper authorization and consent</p>
+                  <i className="fas fa-shield-alt text-2xl text-red-300 mb-3"></i>
+                  <h3 className="font-bold text-white">Authorized Testing</h3>
+                  <p className="text-sm text-white/80">Only use with proper authorization and consent</p>
                 </CardContent>
               </Card>
-              <Card className="border-red-200 bg-white">
+              <Card className="border-red-400/30 bg-white/10 backdrop-blur-md">
                 <CardContent className="p-6 text-center">
-                  <i className="fas fa-users text-2xl text-red-500 mb-3"></i>
-                  <h3 className="font-bold text-red-800">Security Awareness</h3>
-                  <p className="text-sm text-red-600">Train users to identify and prevent phishing attacks</p>
+                  <i className="fas fa-users text-2xl text-red-300 mb-3"></i>
+                  <h3 className="font-bold text-white">Security Awareness</h3>
+                  <p className="text-sm text-white/80">Train users to identify and prevent phishing attacks</p>
                 </CardContent>
               </Card>
             </div>
@@ -658,14 +667,14 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-gray-900 text-white">
+      <footer className="py-12 bg-black/30 backdrop-blur-sm border-t border-white/20">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <div className="text-2xl font-bold gradient-text mb-2">CookPhish</div>
-              <p className="text-gray-400">Advanced Phishing Simulation Framework</p>
+              <div className="text-2xl font-bold text-white mb-2">CookPhish</div>
+              <p className="text-white/60">Advanced Phishing Simulation Framework</p>
             </div>
-            <div className="text-center text-gray-400">
+            <div className="text-center text-white/60">
               <p>&copy; 2024 Technical White Hat. For educational use only.</p>
               <p className="text-sm mt-1">Made with ❤️ in India</p>
             </div>
