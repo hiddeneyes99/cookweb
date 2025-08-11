@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <div className="min-h-screen text-white relative">
       {/* Purple Gradient Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-purple-800 -z-10"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-[#652ca8] via-[#4c1d95] to-[#1e1b4b] -z-10"></div>
       
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/20">
@@ -93,7 +93,7 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10" asChild>
+              <Button variant="outline" size="sm" className="border-white/40 text-white hover:bg-white/15 rounded-lg backdrop-blur-sm" asChild>
                 <a 
                   href="https://github.com/technicalwhitehat-yt/CookPhish" 
                   target="_blank"
@@ -104,7 +104,7 @@ export default function Home() {
                   GitHub
                 </a>
               </Button>
-              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30" asChild>
+              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border border-white/30 rounded-lg backdrop-blur-sm" asChild>
                 <a 
                   href="https://youtube.com/@technicalwhitehat" 
                   target="_blank"
@@ -156,7 +156,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-white text-purple-600 hover:bg-white/90 font-bold"
+                  className="bg-white text-[#652ca8] hover:bg-gray-100 font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
                   onClick={() => scrollToSection('installation')}
                   data-testid="get-started-btn"
                 >
@@ -166,7 +166,7 @@ export default function Home() {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-white/30 text-white hover:bg-white/10"
+                  className="border-2 border-white/40 text-white hover:bg-white/15 px-8 py-4 rounded-xl backdrop-blur-sm transition-all duration-300"
                   onClick={() => scrollToSection('features')}
                   data-testid="learn-more-btn"
                 >
@@ -302,9 +302,9 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="bg-white/10 backdrop-blur-md border-white/20 h-full" data-testid={`feature-card-${index}`}>
+                <Card className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl h-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-white/15" data-testid={`feature-card-${index}`}>
                   <CardContent className="p-8">
-                    <div className={`w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6`}>
+                    <div className={`w-14 h-14 bg-gradient-to-br from-white/30 to-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
                       <i className={`${feature.icon} text-xl ${feature.color}`}></i>
                     </div>
                     <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
@@ -344,10 +344,10 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-white/10 backdrop-blur-md border-white/20">
+              <Card className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-green-500/30 to-green-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
                       <i className="fab fa-android text-xl text-green-400"></i>
                     </div>
                     <div>
@@ -388,10 +388,10 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-white/10 backdrop-blur-md border-white/20">
+              <Card className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
                       <i className="fab fa-linux text-xl text-blue-400"></i>
                     </div>
                     <div>
@@ -434,10 +434,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <Card className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mr-4">
+                  <div className="w-14 h-14 bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
                     <i className="fas fa-cog text-xl text-yellow-400"></i>
                   </div>
                   <div>
@@ -519,10 +519,10 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="bg-white/10 backdrop-blur-md border-white/20 h-full">
+                  <Card className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl h-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-white/15">
                     <CardContent className="p-8">
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-white/30 to-white/10 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                           {item.step}
                         </div>
                         <div className="flex-1">
@@ -552,10 +552,10 @@ export default function Home() {
               👨‍💻 Author Information
             </Badge>
             
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <Card className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
               <CardContent className="p-12">
                 <div className="mb-8">
-                  <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">
+                  <div className="w-24 h-24 bg-gradient-to-br from-white/30 to-white/10 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6 shadow-lg">
                     TWH
                   </div>
                   <h2 className="text-3xl font-bold mb-4 text-white">Technical White Hat</h2>
@@ -570,7 +570,7 @@ export default function Home() {
                 <Separator className="my-8" />
 
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-white/40 text-white hover:bg-white/15 px-6 py-3 rounded-xl backdrop-blur-sm transition-all duration-300" asChild>
                     <a 
                       href="https://youtube.com/@technicalwhitehat" 
                       target="_blank"
@@ -581,7 +581,7 @@ export default function Home() {
                       YouTube Channel
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-white/40 text-white hover:bg-white/15 px-6 py-3 rounded-xl backdrop-blur-sm transition-all duration-300" asChild>
                     <a 
                       href="https://instagram.com/technicalwhitehat" 
                       target="_blank"
@@ -592,7 +592,7 @@ export default function Home() {
                       Instagram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-white/40 text-white hover:bg-white/15 px-6 py-3 rounded-xl backdrop-blur-sm transition-all duration-300" asChild>
                     <a 
                       href="https://t.me/technicalwhitehat" 
                       target="_blank"
@@ -603,7 +603,7 @@ export default function Home() {
                       Telegram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-white/40 text-white hover:bg-white/15 px-6 py-3 rounded-xl backdrop-blur-sm transition-all duration-300" asChild>
                     <a 
                       href="https://github.com/technicalwhitehat-yt" 
                       target="_blank"
@@ -640,21 +640,21 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border-red-400/30 bg-white/10 backdrop-blur-md">
+              <Card className="border border-red-400/30 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <i className="fas fa-graduation-cap text-2xl text-red-300 mb-3"></i>
                   <h3 className="font-bold text-white">Educational Purpose</h3>
                   <p className="text-sm text-white/80">Learn about phishing techniques and defense mechanisms</p>
                 </CardContent>
               </Card>
-              <Card className="border-red-400/30 bg-white/10 backdrop-blur-md">
+              <Card className="border border-red-400/30 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <i className="fas fa-shield-alt text-2xl text-red-300 mb-3"></i>
                   <h3 className="font-bold text-white">Authorized Testing</h3>
                   <p className="text-sm text-white/80">Only use with proper authorization and consent</p>
                 </CardContent>
               </Card>
-              <Card className="border-red-400/30 bg-white/10 backdrop-blur-md">
+              <Card className="border border-red-400/30 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <i className="fas fa-users text-2xl text-red-300 mb-3"></i>
                   <h3 className="font-bold text-white">Security Awareness</h3>
