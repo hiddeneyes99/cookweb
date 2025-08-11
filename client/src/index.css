@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 4%);
+  --foreground: hsl(0, 0%, 100%);
+  --card: hsl(240, 8%, 8%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --popover: hsl(240, 8%, 8%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(151, 100%, 50%);
+  --primary-foreground: hsl(240, 10%, 4%);
+  --secondary: hsl(260, 100%, 70%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 6%, 12%);
+  --muted-foreground: hsl(240, 5%, 65%);
+  --accent: hsl(188, 100%, 42%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 6%, 20%);
+  --input: hsl(240, 6%, 12%);
+  --ring: hsl(151, 100%, 50%);
+  --chart-1: hsl(151, 100%, 50%);
+  --chart-2: hsl(260, 100%, 70%);
+  --chart-3: hsl(188, 100%, 42%);
+  --chart-4: hsl(45, 100%, 60%);
+  --chart-5: hsl(0, 84%, 60%);
+  --sidebar: hsl(240, 8%, 8%);
+  --sidebar-foreground: hsl(0, 0%, 95%);
+  --sidebar-primary: hsl(151, 100%, 50%);
+  --sidebar-primary-foreground: hsl(240, 10%, 4%);
+  --sidebar-accent: hsl(240, 6%, 12%);
+  --sidebar-accent-foreground: hsl(0, 0%, 95%);
+  --sidebar-border: hsl(240, 6%, 20%);
+  --sidebar-ring: hsl(151, 100%, 50%);
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Georgia', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-orbitron: 'Orbitron', sans-serif;
+  --radius: 0.5rem;
+  --matrix: hsl(151, 100%, 50%);
+  --cyber-purple: hsl(260, 100%, 70%);
+  --cyber-blue: hsl(188, 100%, 42%);
+  --cyber-dark: hsl(240, 10%, 4%);
+  --cyber-navy: hsl(240, 20%, 10%);
+  --cyber-midnight: hsl(240, 25%, 8%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 4%);
+  --foreground: hsl(0, 0%, 100%);
+  --card: hsl(240, 8%, 8%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --popover: hsl(240, 8%, 8%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(151, 100%, 50%);
+  --primary-foreground: hsl(240, 10%, 4%);
+  --secondary: hsl(260, 100%, 70%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 6%, 12%);
+  --muted-foreground: hsl(240, 5%, 65%);
+  --accent: hsl(188, 100%, 42%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 6%, 20%);
+  --input: hsl(240, 6%, 12%);
+  --ring: hsl(151, 100%, 50%);
+  --sidebar: hsl(240, 8%, 8%);
+  --sidebar-foreground: hsl(0, 0%, 95%);
+  --sidebar-primary: hsl(151, 100%, 50%);
+  --sidebar-primary-foreground: hsl(240, 10%, 4%);
+  --sidebar-accent: hsl(240, 6%, 12%);
+  --sidebar-accent-foreground: hsl(0, 0%, 95%);
+  --sidebar-border: hsl(240, 6%, 20%);
+  --sidebar-ring: hsl(151, 100%, 50%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .font-orbitron {
+    font-family: var(--font-orbitron);
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  
+  .text-matrix {
+    color: var(--matrix);
+  }
+  
+  .text-cyber-purple {
+    color: var(--cyber-purple);
+  }
+  
+  .text-cyber-blue {
+    color: var(--cyber-blue);
+  }
+  
+  .bg-matrix {
+    background-color: var(--matrix);
+  }
+  
+  .bg-cyber-purple {
+    background-color: var(--cyber-purple);
+  }
+  
+  .bg-cyber-blue {
+    background-color: var(--cyber-blue);
+  }
+  
+  .bg-cyber-dark {
+    background-color: var(--cyber-dark);
+  }
+  
+  .bg-cyber-navy {
+    background-color: var(--cyber-navy);
+  }
+  
+  .bg-cyber-midnight {
+    background-color: var(--cyber-midnight);
+  }
+}
+
+@keyframes matrixRain {
+  0% { 
+    transform: translateY(-100vh); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateY(100vh); 
+    opacity: 0; 
+  }
+}
+
+@keyframes glowPulse {
+  0% { 
+    box-shadow: 0 0 20px var(--matrix), 0 0 40px var(--matrix), 0 0 60px var(--matrix); 
+  }
+  100% { 
+    box-shadow: 0 0 10px var(--matrix), 0 0 20px var(--matrix), 0 0 30px var(--matrix); 
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-20px) rotate(1deg); 
+  }
+  66% { 
+    transform: translateY(-10px) rotate(-1deg); 
+  }
+}
+
+@keyframes cyberBounce {
+  0% { 
+    transform: scale(0.8) rotateY(0deg); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.05) rotateY(180deg); 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: scale(1) rotateY(360deg); 
+    opacity: 1; 
+  }
+}
+
+@keyframes scanLine {
+  0% { 
+    transform: translateX(-100%); 
+  }
+  100% { 
+    transform: translateX(100vw); 
+  }
+}
+
+@keyframes typewriter {
+  from { 
+    width: 0; 
+  }
+  to { 
+    width: 100%; 
+  }
+}
+
+.matrix-bg {
+  background: linear-gradient(135deg, var(--cyber-dark) 0%, var(--cyber-navy) 50%, var(--cyber-midnight) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cyber-glow:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8), inset 0 0 30px rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+
+.terminal-window {
+  background: linear-gradient(145deg, #111111, #1a1a1a);
+  border-radius: 10px;
+  border: 1px solid #333;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.terminal-window:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--matrix), transparent);
+  animation: scanLine 2s linear infinite;
+}
+
+.particle {
+  position: absolute;
+  background: var(--matrix);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.animate-matrix-rain {
+  animation: matrixRain 2s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-cyber-bounce {
+  animation: cyberBounce 1s ease-out;
+}
+
+.animate-scan-line {
+  animation: scanLine 2s linear infinite;
+}
+
+.animate-typewriter {
+  animation: typewriter 2s steps(40) forwards;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, var(--matrix), var(--cyber-purple), var(--cyber-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--cyber-dark);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.matrix-char {
+  position: absolute;
+  color: var(--matrix);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  animation: matrixRain 2s linear infinite;
+  opacity: 0.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Code block styling */
+.code-block {
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  border: 1px solid #333;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .matrix-char {
+    font-size: 14px;
+  }
+  
+  .terminal-window {
+    margin: 10px;
+  }
+  
+  .cyber-glow {
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5), inset 0 0 10px rgba(139, 92, 246, 0.1);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-matrix-rain,
+  .animate-glow-pulse,
+  .animate-float,
+  .animate-cyber-bounce,
+  .animate-scan-line,
+  .animate-typewriter {
+    animation: none;
+  }
+  
+  .cyber-glow:hover {
+    transform: none;
+  }
+  
+  .terminal-window:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .cyber-glow {
+    border: 2px solid var(--matrix);
+  }
+  
+  .text-matrix {
+    color: #00ff00;
+  }
+  
+  .text-cyber-purple {
+    color: #ff00ff;
+  }
+  
+  .text-cyber-blue {
+    color: #00ffff;
+  }
+}
