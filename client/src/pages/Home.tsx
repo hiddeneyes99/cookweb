@@ -725,16 +725,6 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-6">
-                    <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30">
-                      <h4 className="font-bold text-green-300 mb-2">📱 What You'll Learn:</h4>
-                      <ul className="text-sm text-white/80 space-y-1">
-                        <li>• Setting up Termux on Android</li>
-                        <li>• Installing CookPhish framework</li>
-                        <li>• Running phishing simulations</li>
-                        <li>• Mobile-specific configurations</li>
-                      </ul>
-                    </div>
-                    
                     <div className="aspect-video bg-black/30 rounded-xl border-2 border-green-400/30 relative overflow-hidden group cursor-pointer">
                       <a 
                         href="https://youtube.com/@technicalwhitehat" 
@@ -757,6 +747,16 @@ export default function Home() {
                           </Button>
                         </div>
                       </a>
+                    </div>
+                    
+                    <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30">
+                      <h4 className="font-bold text-green-300 mb-2">📱 What You'll Learn:</h4>
+                      <ul className="text-sm text-white/80 space-y-1">
+                        <li>• Setting up Termux on Android</li>
+                        <li>• Installing CookPhish framework</li>
+                        <li>• Running phishing simulations</li>
+                        <li>• Mobile-specific configurations</li>
+                      </ul>
                     </div>
                   </div>
                 </CardContent>
@@ -782,16 +782,6 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-6">
-                    <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30">
-                      <h4 className="font-bold text-blue-300 mb-2">💻 What You'll Learn:</h4>
-                      <ul className="text-sm text-white/80 space-y-1">
-                        <li>• Kali Linux environment setup</li>
-                        <li>• Advanced CookPhish features</li>
-                        <li>• Professional penetration testing</li>
-                        <li>• Security assessment techniques</li>
-                      </ul>
-                    </div>
-                    
                     <div className="aspect-video bg-black/30 rounded-xl border-2 border-blue-400/30 relative overflow-hidden group cursor-pointer">
                       <a 
                         href="https://youtube.com/@technicalwhitehat" 
@@ -814,6 +804,16 @@ export default function Home() {
                           </Button>
                         </div>
                       </a>
+                    </div>
+                    
+                    <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30">
+                      <h4 className="font-bold text-blue-300 mb-2">💻 What You'll Learn:</h4>
+                      <ul className="text-sm text-white/80 space-y-1">
+                        <li>• Kali Linux environment setup</li>
+                        <li>• Advanced CookPhish features</li>
+                        <li>• Professional penetration testing</li>
+                        <li>• Security assessment techniques</li>
+                      </ul>
                     </div>
                   </div>
                 </CardContent>
