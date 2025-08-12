@@ -240,72 +240,50 @@
   }
 
   .hero-button-primary {
-    position: relative;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     color: #652ca8;
     border: none;
-    overflow: hidden;
-    box-shadow: 
-      0 8px 25px rgba(101, 44, 168, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(101, 44, 168, 0.2);
+    transition: all 0.3s ease;
   }
 
-  .hero-button-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(101, 44, 168, 0.2), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .hero-button-primary:hover::before {
-    left: 100%;
+  .hero-button-primary i {
+    transition: all 0.3s ease;
   }
 
   .hero-button-primary:hover {
     background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 
-      0 15px 35px rgba(101, 44, 168, 0.4),
-      0 0 50px rgba(255, 255, 255, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(101, 44, 168, 0.3);
+  }
+
+  .hero-button-primary:hover i {
+    transform: scale(1.3);
+    color: #652ca8;
   }
 
   .hero-button-secondary {
-    position: relative;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
-    backdrop-filter: blur(15px);
-    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
   }
 
-  .hero-button-secondary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .hero-button-secondary:hover::before {
-    left: 100%;
+  .hero-button-secondary i {
+    transition: all 0.3s ease;
   }
 
   .hero-button-secondary:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 
-      0 15px 35px rgba(255, 255, 255, 0.2),
-      0 0 50px rgba(255, 255, 255, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-button-secondary:hover i {
+    transform: scale(1.3);
+    color: #ffffff;
   }
 
   .nav-button {
@@ -345,184 +323,89 @@
   }
 
   .social-button {
-    position: relative;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     color: white;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  .social-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.6s;
-  }
-
-  .social-button:hover::before {
-    transform: translateX(100%);
-  }
-
-  .social-button::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #ff0000, #ff4500, #ff8c00, #ffd700);
-    border-radius: inherit;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .youtube-button::after {
-    background: linear-gradient(45deg, #ff0000, #ff4500, #cc0000, #ff6b6b);
-    animation: rotateGradient 3s linear infinite;
+  .social-button i {
+    transition: all 0.3s ease;
   }
 
   .youtube-button:hover {
-    transform: translateY(-8px) scale(1.1) rotateX(10deg);
-    box-shadow: 
-      0 20px 40px rgba(255, 0, 0, 0.4),
-      0 0 60px rgba(255, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: rgba(255, 0, 0, 0.2);
+    border-color: #ff0000;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    transform: translateY(-2px);
   }
 
-  .youtube-button:hover::after {
-    opacity: 1;
-  }
-
-  .instagram-button::after {
-    background: linear-gradient(45deg, #e1306c, #fd1d1d, #f56040, #f77737, #fcaf45, #ffdc80);
-    animation: rotateGradient 3s linear infinite;
+  .youtube-button:hover i {
+    transform: scale(1.4);
+    color: #ff0000;
   }
 
   .instagram-button:hover {
-    transform: translateY(-8px) scale(1.1) rotateX(10deg);
-    box-shadow: 
-      0 20px 40px rgba(225, 48, 108, 0.4),
-      0 0 60px rgba(225, 48, 108, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: rgba(225, 48, 108, 0.2);
+    border-color: #e1306c;
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.3);
+    transform: translateY(-2px);
   }
 
-  .instagram-button:hover::after {
-    opacity: 1;
-  }
-
-  .telegram-button::after {
-    background: linear-gradient(45deg, #0088cc, #00aaff, #0099dd, #66ccff);
-    animation: rotateGradient 3s linear infinite;
+  .instagram-button:hover i {
+    transform: scale(1.4);
+    color: #e1306c;
   }
 
   .telegram-button:hover {
-    transform: translateY(-8px) scale(1.1) rotateX(10deg);
-    box-shadow: 
-      0 20px 40px rgba(0, 136, 204, 0.4),
-      0 0 60px rgba(0, 136, 204, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: rgba(0, 136, 204, 0.2);
+    border-color: #0088cc;
+    box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+    transform: translateY(-2px);
   }
 
-  .telegram-button:hover::after {
-    opacity: 1;
-  }
-
-  .github-button::after {
-    background: linear-gradient(45deg, #333, #666, #999, #fff);
-    animation: rotateGradient 3s linear infinite;
+  .telegram-button:hover i {
+    transform: scale(1.4);
+    color: #0088cc;
   }
 
   .github-button:hover {
-    transform: translateY(-8px) scale(1.1) rotateX(10deg);
-    box-shadow: 
-      0 20px 40px rgba(255, 255, 255, 0.2),
-      0 0 60px rgba(255, 255, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
   }
 
-  .github-button:hover::after {
-    opacity: 1;
-  }
-
-  @keyframes rotateGradient {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes magicGlow {
-    0%, 100% {
-      filter: hue-rotate(0deg) brightness(1);
-    }
-    25% {
-      filter: hue-rotate(90deg) brightness(1.2);
-    }
-    50% {
-      filter: hue-rotate(180deg) brightness(1.4);
-    }
-    75% {
-      filter: hue-rotate(270deg) brightness(1.2);
-    }
+  .github-button:hover i {
+    transform: scale(1.4);
+    color: #ffffff;
   }
 
   .magical-button {
-    position: relative;
-    background: linear-gradient(135deg, rgba(147, 51, 234, 0.8), rgba(168, 85, 247, 0.6));
-    border: none;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 
-      0 10px 30px rgba(147, 51, 234, 0.4),
-      0 0 50px rgba(147, 51, 234, 0.3);
+    background: rgba(147, 51, 234, 0.3);
+    border: 2px solid rgba(147, 51, 234, 0.5);
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
   }
 
-  .magical-button::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(
-      from 0deg,
-      transparent,
-      rgba(147, 51, 234, 0.6),
-      transparent,
-      rgba(168, 85, 247, 0.6),
-      transparent
-    );
-    animation: rotateGradient 4s linear infinite;
-    z-index: -1;
-  }
-
-  .magical-button::after {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background: inherit;
-    border-radius: inherit;
-    z-index: -1;
+  .magical-button i {
+    transition: all 0.3s ease;
   }
 
   .magical-button:hover {
-    transform: translateY(-10px) scale(1.1) rotateX(15deg);
-    animation: magicGlow 2s ease-in-out infinite;
-    box-shadow: 
-      0 25px 50px rgba(147, 51, 234, 0.6),
-      0 0 100px rgba(147, 51, 234, 0.5),
-      inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    background: rgba(147, 51, 234, 0.5);
+    border-color: rgba(147, 51, 234, 0.8);
+    box-shadow: 0 5px 15px rgba(147, 51, 234, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .magical-button:hover i {
+    transform: scale(1.4);
+    color: #9333ea;
   }
 
   .pulse-glow {
@@ -570,70 +453,36 @@
   }
 
   .copy-button {
-    position: relative;
-    padding: 12px 18px;
-    background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(168, 85, 247, 0.3));
-    border: none;
-    border-radius: 12px;
+    padding: 10px 16px;
+    background: rgba(147, 51, 234, 0.3);
+    border: 2px solid rgba(147, 51, 234, 0.5);
+    border-radius: 10px;
     color: white;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(20px);
-    overflow: hidden;
-    box-shadow: 
-      0 8px 20px rgba(147, 51, 234, 0.3),
-      0 0 30px rgba(147, 51, 234, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
   }
 
-  .copy-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.5s ease;
-    z-index: 1;
-  }
-
-  .copy-button::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #9333ea, #a855f7, #c084fc, #ddd6fe);
-    border-radius: inherit;
-    z-index: -1;
-    opacity: 0;
-    animation: rotateGradient 2s linear infinite;
-    transition: opacity 0.3s ease;
-  }
-
-  .copy-button:hover::before {
-    left: 100%;
-  }
-
-  .copy-button:hover::after {
-    opacity: 1;
+  .copy-button i {
+    transition: all 0.3s ease;
   }
 
   .copy-button:hover {
-    background: linear-gradient(135deg, rgba(147, 51, 234, 0.6), rgba(168, 85, 247, 0.5));
-    box-shadow: 
-      0 12px 30px rgba(147, 51, 234, 0.5),
-      0 0 50px rgba(147, 51, 234, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    transform: translateY(-4px) scale(1.08);
+    background: rgba(147, 51, 234, 0.5);
+    border-color: rgba(147, 51, 234, 0.7);
+    box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .copy-button:hover i {
+    transform: scale(1.3);
+    color: #9333ea;
   }
 
   .copy-button:active {
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(0);
   }
 }
 
