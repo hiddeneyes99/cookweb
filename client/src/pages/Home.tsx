@@ -991,50 +991,51 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Get ready for the most advanced phishing simulation framework with 
-              <strong className="text-purple-400"> unlimited features</strong>, 
-              <strong className="text-pink-400"> AI integration</strong>, and 
-              <strong className="text-orange-400"> zero limitations</strong>
+              The ultimate phishing simulation framework with 
+              <strong className="text-purple-400"> mask URL generation</strong>, 
+              <strong className="text-blue-400"> unlimited hosting time</strong>, 
+              <strong className="text-green-400"> cross-platform support</strong>, and 
+              <strong className="text-red-400"> advanced victim tracking</strong>
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[
               {
-                icon: 'fas fa-infinity',
-                title: 'No Limitations',
-                description: 'Unlimited campaigns, targets, and advanced features without restrictions',
+                icon: 'fas fa-mask',
+                title: 'Mask URL Generator',
+                description: 'Create deceptive URLs like https://www.instagram.com@verify.net to bypass user suspicion with custom domain masking',
                 color: 'purple'
+              },
+              {
+                icon: 'fas fa-infinity',
+                title: 'Unlimited Hosting',
+                description: 'No time restrictions on hosting, unlimited campaigns with custom domain setup capabilities',
+                color: 'blue'
+              },
+              {
+                icon: 'fas fa-mobile-alt',
+                title: 'Cross-Platform Support',
+                description: 'Full compatibility with both Termux (Android) and Kali Linux with optimized performance',
+                color: 'green'
+              },
+              {
+                icon: 'fas fa-map-marker-alt',
+                title: 'Advanced Victim Info',
+                description: 'Detailed location tracking, device fingerprinting, mobile specs, browser info, and comprehensive data collection',
+                color: 'red'
               },
               {
                 icon: 'fas fa-robot',
                 title: 'AI Integration',
-                description: 'AI-powered template generation and smart targeting capabilities',
+                description: 'AI-powered template generation, smart targeting, and automated social engineering techniques',
                 color: 'pink'
               },
               {
                 icon: 'fas fa-chart-line',
-                title: 'Advanced Analytics',
-                description: 'Comprehensive reporting and detailed monitoring dashboard',
+                title: 'Professional Analytics',
+                description: 'Real-time dashboards, victim behavior analysis, success rate tracking, and detailed reporting system',
                 color: 'orange'
-              },
-              {
-                icon: 'fas fa-shield-alt',
-                title: 'Enhanced Security',
-                description: 'Better evasion techniques and professional-grade security tools',
-                color: 'blue'
-              },
-              {
-                icon: 'fas fa-users',
-                title: 'Team Collaboration',
-                description: 'Multi-user support and collaborative penetration testing',
-                color: 'cyan'
-              },
-              {
-                icon: 'fas fa-mobile-alt',
-                title: 'Mobile Optimized',
-                description: 'Advanced mobile interface with specialized phishing templates',
-                color: 'green'
               }
             ].map((feature, index) => (
               <motion.div
