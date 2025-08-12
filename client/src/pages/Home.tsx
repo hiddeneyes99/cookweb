@@ -65,7 +65,7 @@ export default function Home() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <div className="text-3xl font-bold gradient-text drop-shadow-lg">
+              <div className="text-3xl font-bold">
                 <span className="bg-gradient-to-r from-orange-400 via-white to-green-400 bg-clip-text text-transparent">
                   CookPhish
                 </span>
