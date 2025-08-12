@@ -65,11 +65,10 @@ export default function Home() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <div className="relative group cursor-pointer">
+              <div className="group cursor-pointer">
                 <div className="text-3xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-2xl tracking-wide transform transition-all duration-300 group-hover:scale-105">
                   CookPhish
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-pink-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <Badge variant="secondary" className="text-white border-white/30 bg-transparent">
                 v3.0.0
