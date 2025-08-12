@@ -195,7 +195,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative">
+              <div className="relative image-purple-glow">
                 <img 
                   src={exampleImage} 
                   alt="CookPhish Interface" 
