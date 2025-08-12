@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import ModernLoadingScreen from '@/components/ModernLoadingScreen';
 import exampleImage from '@assets/e73c5cc3ec9ce4c8d6e28652542b6875753a226b_1754922211029.png';
+import twhLogo from '@assets/technical white hat 2.0_1754987246786.jpg';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -93,7 +94,7 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 rounded-lg backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 transition-all duration-300" asChild>
+              <Button variant="outline" size="sm" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 rounded-lg backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
                 <a 
                   href="https://github.com/technicalwhitehat-yt/CookPhish" 
                   target="_blank"
@@ -101,10 +102,10 @@ export default function Home() {
                   data-testid="github-btn"
                 >
                   <i className="fab fa-github mr-2"></i>
-                  GitHub
+                  Get Started
                 </a>
               </Button>
-              <Button size="sm" className="bg-purple-500/30 hover:bg-purple-400/40 text-white border-2 border-purple-300/60 rounded-lg backdrop-blur-sm shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 transition-all duration-300" asChild>
+              <Button size="sm" className="bg-purple-500/30 hover:bg-purple-400/40 text-white border-2 border-purple-300/60 rounded-lg backdrop-blur-sm shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 animated-button" asChild>
                 <a 
                   href="https://youtube.com/@technicalwhitehat" 
                   target="_blank"
@@ -357,26 +358,24 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-4">
-                    {[
-                      'pkg update && pkg upgrade -y',
-                      'pkg install git',
-                      'git clone https://github.com/technicalwhitehat-yt/CookPhish.git',
-                      'cd CookPhish',
-                      'bash CookPhish'
-                    ].map((command, index) => (
-                      <div key={index} className="code-block p-4 group relative">
-                        <div className="flex items-center justify-between">
-                          <code className="text-sm text-green-300 font-mono flex-1">{command}</code>
-                          <button 
-                            className="opacity-0 group-hover:opacity-100 text-white/60 hover:text-white transition-all ml-4" 
-                            onClick={() => copyToClipboard(command)}
-                            data-testid={`copy-termux-${index}`}
-                          >
-                            <i className="fas fa-copy"></i>
-                          </button>
-                        </div>
+                    <div className="code-block p-4 group relative">
+                      <div className="flex items-center justify-between">
+                        <code className="text-sm text-green-300 font-mono flex-1">pkg update && pkg upgrade -y && pkg install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish</code>
+                        <button 
+                          className="copy-button ml-4"
+                          onClick={(e) => {
+                            navigator.clipboard.writeText('pkg update && pkg upgrade -y && pkg install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish');
+                            const btn = e.target as HTMLButtonElement;
+                            btn.textContent = 'Copied!';
+                            setTimeout(() => btn.textContent = 'Copy', 2000);
+                          }}
+                          data-testid="copy-termux-all"
+                        >
+                          Copy
+                        </button>
                       </div>
-                    ))}
+                    </div>
+                    <p className="text-white/60 text-xs mt-2">📱 Complete one-line installation for Termux</p>
                   </div>
                 </CardContent>
               </Card>
@@ -401,26 +400,24 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-4">
-                    {[
-                      'sudo apt-get update && upgrade -y',
-                      'apt-get install git',
-                      'git clone https://github.com/technicalwhitehat-yt/CookPhish.git',
-                      'cd CookPhish',
-                      'sudo bash CookPhish'
-                    ].map((command, index) => (
-                      <div key={index} className="code-block p-4 group relative">
-                        <div className="flex items-center justify-between">
-                          <code className="text-sm text-blue-300 font-mono flex-1">{command}</code>
-                          <button 
-                            className="opacity-0 group-hover:opacity-100 text-white/60 hover:text-white transition-all ml-4" 
-                            onClick={() => copyToClipboard(command)}
-                            data-testid={`copy-kali-${index}`}
-                          >
-                            <i className="fas fa-copy"></i>
-                          </button>
-                        </div>
+                    <div className="code-block p-4 group relative">
+                      <div className="flex items-center justify-between">
+                        <code className="text-sm text-blue-300 font-mono flex-1">sudo apt-get update && upgrade -y && apt-get install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish</code>
+                        <button 
+                          className="copy-button ml-4"
+                          onClick={(e) => {
+                            navigator.clipboard.writeText('sudo apt-get update && upgrade -y && apt-get install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish');
+                            const btn = e.target as HTMLButtonElement;
+                            btn.textContent = 'Copied!';
+                            setTimeout(() => btn.textContent = 'Copy', 2000);
+                          }}
+                          data-testid="copy-kali-all"
+                        >
+                          Copy
+                        </button>
                       </div>
-                    ))}
+                    </div>
+                    <p className="text-white/60 text-xs mt-2">💻 Complete one-line installation for Kali Linux</p>
                   </div>
                 </CardContent>
               </Card>
@@ -450,14 +447,20 @@ export default function Home() {
                   <div className="flex items-center justify-between">
                     <code className="text-sm text-yellow-300 font-mono flex-1">pip install -r requirements.txt</code>
                     <button 
-                      className="opacity-0 group-hover:opacity-100 text-white/60 hover:text-white transition-all ml-4" 
-                      onClick={() => copyToClipboard('pip install -r requirements.txt')}
+                      className="copy-button ml-4"
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('pip install -r requirements.txt');
+                        const btn = e.target as HTMLButtonElement;
+                        btn.textContent = 'Copied!';
+                        setTimeout(() => btn.textContent = 'Copy', 2000);
+                      }}
                       data-testid="copy-requirements"
                     >
-                      <i className="fas fa-copy"></i>
+                      Copy
                     </button>
                   </div>
                 </div>
+                <p className="text-white/60 text-xs mt-2">🔧 Note: You must clone the repo via Git to enable auto-update functionality</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -555,8 +558,12 @@ export default function Home() {
             <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:border-purple-300/60">
               <CardContent className="p-12">
                 <div className="mb-8">
-                  <div className="w-24 h-24 bg-gradient-to-br from-purple-500/40 to-purple-700/30 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6 shadow-lg shadow-purple-500/30">
-                    TWH
+                  <div className="w-24 h-24 rounded-full mx-auto mb-6 shadow-lg shadow-purple-500/30 overflow-hidden border-2 border-purple-300/40">
+                    <img 
+                      src={twhLogo} 
+                      alt="Technical White Hat Logo" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h2 className="text-3xl font-bold mb-4 text-white">Technical White Hat</h2>
                   <p className="text-xl text-white/80 mb-6">Cybersecurity Researcher & Ethical Hacker from India</p>
@@ -570,7 +577,7 @@ export default function Home() {
                 <Separator className="my-8" />
 
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 transition-all duration-300" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
                     <a 
                       href="https://youtube.com/@technicalwhitehat" 
                       target="_blank"
@@ -581,7 +588,7 @@ export default function Home() {
                       YouTube Channel
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 transition-all duration-300" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
                     <a 
                       href="https://instagram.com/technicalwhitehat" 
                       target="_blank"
@@ -592,7 +599,7 @@ export default function Home() {
                       Instagram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 transition-all duration-300" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
                     <a 
                       href="https://t.me/technicalwhitehat" 
                       target="_blank"
@@ -603,7 +610,7 @@ export default function Home() {
                       Telegram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 transition-all duration-300" asChild>
+                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
                     <a 
                       href="https://github.com/technicalwhitehat-yt" 
                       target="_blank"
