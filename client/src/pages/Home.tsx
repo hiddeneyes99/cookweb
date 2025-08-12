@@ -126,7 +126,7 @@ export default function Home() {
               </Button>
               <Button 
                 size="sm" 
-                className="group relative overflow-hidden bg-gradient-to-r from-red-500/80 to-red-600/80 border border-red-400/50 text-white font-semibold px-4 py-2 rounded-xl transition-all duration-300 hover:from-red-500 hover:to-red-600 hover:shadow-lg hover:shadow-red-500/30 hover:scale-105" 
+                className="group relative overflow-hidden bg-gradient-to-r from-red-500 to-red-600 border border-red-400 text-white font-semibold px-4 py-2 rounded-xl transition-all duration-300 hover:from-red-400 hover:to-red-500 hover:shadow-xl hover:shadow-red-500/50 hover:scale-105 shadow-lg shadow-red-500/30" 
                 asChild
               >
                 <a 
@@ -135,9 +135,10 @@ export default function Home() {
                   rel="noopener noreferrer"
                   data-testid="youtube-btn"
                 >
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-300/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/40 to-red-600/40 rounded-xl blur opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="relative flex items-center space-x-2">
-                    <i className="fab fa-youtube text-lg"></i>
+                    <i className="fab fa-youtube text-lg drop-shadow-sm"></i>
                     <span>YouTube</span>
                   </div>
                 </a>
