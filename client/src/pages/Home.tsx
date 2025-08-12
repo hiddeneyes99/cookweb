@@ -95,7 +95,7 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="modern-button nav-button" asChild>
+              <Button variant="outline" size="sm" className="magical-button text-white font-semibold" asChild>
                 <a 
                   href="https://github.com/technicalwhitehat-yt/CookPhish" 
                   target="_blank"
@@ -106,7 +106,7 @@ export default function Home() {
                   Get Started
                 </a>
               </Button>
-              <Button size="sm" className="modern-button nav-button pulse-glow" asChild>
+              <Button size="sm" className="magical-button text-white font-semibold" asChild>
                 <a 
                   href="https://youtube.com/@technicalwhitehat" 
                   target="_blank"
