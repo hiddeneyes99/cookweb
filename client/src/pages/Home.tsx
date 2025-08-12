@@ -77,6 +77,7 @@ export default function Home() {
               {[
                 { id: 'features', label: 'Features' },
                 { id: 'installation', label: 'Installation' },
+                { id: 'videos', label: 'Videos' },
                 { id: 'usage', label: 'Usage' },
                 { id: 'author', label: 'Author' }
               ].map(({ id, label }) => (
@@ -467,6 +468,170 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Watch Video Section */}
+      <section id="videos" className="py-20 bg-gradient-to-r from-purple-900/20 to-blue-900/20 backdrop-blur-sm">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Badge className="bg-yellow-400/20 text-yellow-300 border-yellow-400/30 mb-4">
+              🎥 Watch Tutorials
+            </Badge>
+            <h2 className="text-4xl font-bold mb-4">
+              Step-by-Step <span className="text-white drop-shadow-2xl">Video Guides</span>
+            </h2>
+            <p className="text-xl text-white/80">
+              Follow along with detailed tutorials for both Android and Linux platforms
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Android Tutorial */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/10 backdrop-blur-md border border-green-300/40 rounded-2xl shadow-xl shadow-green-500/20 hover:shadow-2xl hover:shadow-green-400/30 transition-all duration-300 hover:border-green-300/60">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-500/30 to-green-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-green-500/30">
+                      <i className="fab fa-android text-2xl text-green-400"></i>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">Android Tutorial</h3>
+                      <p className="text-sm text-white/60">Complete guide for Termux installation</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="aspect-video bg-black/30 rounded-xl border-2 border-green-400/30 flex items-center justify-center relative overflow-hidden group">
+                      <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
+                      <Button 
+                        className="modern-button youtube-button bg-red-600/80 hover:bg-red-500 text-white px-8 py-4 text-lg font-semibold"
+                        asChild
+                      >
+                        <a 
+                          href="https://youtube.com/@technicalwhitehat" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid="android-video"
+                        >
+                          <i className="fab fa-youtube mr-3 text-xl"></i>
+                          Watch Android Tutorial
+                        </a>
+                      </Button>
+                    </div>
+                    
+                    <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30">
+                      <h4 className="font-bold text-green-300 mb-2">📱 What You'll Learn:</h4>
+                      <ul className="text-sm text-white/80 space-y-1">
+                        <li>• Setting up Termux on Android</li>
+                        <li>• Installing CookPhish framework</li>
+                        <li>• Running phishing simulations</li>
+                        <li>• Mobile-specific configurations</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Linux Tutorial */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/10 backdrop-blur-md border border-blue-300/40 rounded-2xl shadow-xl shadow-blue-500/20 hover:shadow-2xl hover:shadow-blue-400/30 transition-all duration-300 hover:border-blue-300/60">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/30">
+                      <i className="fab fa-linux text-2xl text-blue-400"></i>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">Kali Linux Tutorial</h3>
+                      <p className="text-sm text-white/60">Professional setup for security testing</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="aspect-video bg-black/30 rounded-xl border-2 border-blue-400/30 flex items-center justify-center relative overflow-hidden group">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                      <Button 
+                        className="modern-button youtube-button bg-red-600/80 hover:bg-red-500 text-white px-8 py-4 text-lg font-semibold"
+                        asChild
+                      >
+                        <a 
+                          href="https://youtube.com/@technicalwhitehat" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid="linux-video"
+                        >
+                          <i className="fab fa-youtube mr-3 text-xl"></i>
+                          Watch Linux Tutorial
+                        </a>
+                      </Button>
+                    </div>
+                    
+                    <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30">
+                      <h4 className="font-bold text-blue-300 mb-2">💻 What You'll Learn:</h4>
+                      <ul className="text-sm text-white/80 space-y-1">
+                        <li>• Kali Linux environment setup</li>
+                        <li>• Advanced CookPhish features</li>
+                        <li>• Professional penetration testing</li>
+                        <li>• Security assessment techniques</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Video Features */}
+          <motion.div 
+            className="mt-12 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i className="fas fa-play-circle text-xl text-purple-400"></i>
+                  </div>
+                  <h3 className="font-bold text-white mb-2">HD Quality</h3>
+                  <p className="text-sm text-white/80">Crystal clear 1080p tutorials with detailed explanations</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i className="fas fa-clock text-xl text-purple-400"></i>
+                  </div>
+                  <h3 className="font-bold text-white mb-2">Step-by-Step</h3>
+                  <p className="text-sm text-white/80">Easy to follow instructions for beginners</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i className="fas fa-comments text-xl text-purple-400"></i>
+                  </div>
+                  <h3 className="font-bold text-white mb-2">Community Support</h3>
+                  <p className="text-sm text-white/80">Get help from our active community</p>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Usage Section */}
       <section id="usage" className="py-20 bg-black/10 backdrop-blur-sm">
         <div className="container mx-auto px-6">
@@ -577,7 +742,7 @@ export default function Home() {
                 <Separator className="my-8" />
 
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button youtube-button px-8 py-3" asChild>
                     <a 
                       href="https://youtube.com/@technicalwhitehat" 
                       target="_blank"
@@ -588,7 +753,7 @@ export default function Home() {
                       YouTube Channel
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button instagram-button px-8 py-3" asChild>
                     <a 
                       href="https://instagram.com/technicalwhitehat" 
                       target="_blank"
@@ -599,7 +764,7 @@ export default function Home() {
                       Instagram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button telegram-button px-8 py-3" asChild>
                     <a 
                       href="https://t.me/technicalwhitehat" 
                       target="_blank"
@@ -610,7 +775,7 @@ export default function Home() {
                       Telegram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button github-button px-8 py-3" asChild>
                     <a 
                       href="https://github.com/technicalwhitehat-yt" 
                       target="_blank"
