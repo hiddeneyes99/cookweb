@@ -1026,15 +1026,15 @@ export default function Home() {
                 color: 'red'
               },
               {
-                icon: 'fas fa-robot',
-                title: 'AI Integration',
-                description: 'AI-powered template generation, smart targeting, and automated social engineering techniques',
+                icon: 'fas fa-eye',
+                title: 'Awesome Look',
+                description: 'Beautiful modern interface with stunning visuals and professional cybersecurity design themes',
                 color: 'pink'
               },
               {
-                icon: 'fas fa-chart-line',
-                title: 'Professional Analytics',
-                description: 'Real-time dashboards, victim behavior analysis, success rate tracking, and detailed reporting system',
+                icon: 'fas fa-rocket',
+                title: 'Simple to Use',
+                description: 'User-friendly interface with one-click setup, easy configuration, and many more advanced features',
                 color: 'orange'
               }
             ].map((feature, index) => (
