@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import ModernLoadingScreen from '@/components/ModernLoadingScreen';
-import exampleImage from '@assets/e73c5cc3ec9ce4c8d6e28652542b6875753a226b_1754922211029.png';
+import exampleImage from '@assets/Untitled _1754988628893.png';
 import twhLogo from '@assets/technical white hat 2.0_1754987246786.jpg';
 
 export default function Home() {
