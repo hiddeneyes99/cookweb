@@ -75,48 +75,71 @@ export default function Home() {
               </Badge>
             </div>
             
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex space-x-2">
               {[
-                { id: 'features', label: 'Features' },
-                { id: 'installation', label: 'Installation' },
-                { id: 'videos', label: 'Videos' },
-                { id: 'usage', label: 'Usage' },
-                { id: 'author', label: 'Author' }
-              ].map(({ id, label }) => (
+                { id: 'features', label: 'Features', icon: 'fas fa-star' },
+                { id: 'installation', label: 'Installation', icon: 'fas fa-download' },
+                { id: 'videos', label: 'Videos', icon: 'fas fa-play' },
+                { id: 'usage', label: 'Usage', icon: 'fas fa-rocket' },
+                { id: 'author', label: 'Author', icon: 'fas fa-user' }
+              ].map(({ id, label, icon }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`nav-link-button px-4 py-2 rounded-lg transition-all duration-300 relative ${
-                    activeSection === id ? 'text-yellow-300 font-medium bg-yellow-300/10' : 'text-white/80 hover:text-yellow-300 hover:bg-white/5'
+                  className={`nav-link-button group relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
+                    activeSection === id 
+                      ? 'text-white bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 shadow-lg shadow-cyan-500/20' 
+                      : 'text-white/80 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20 hover:shadow-md'
                   }`}
                   data-testid={`nav-${id}`}
                 >
-                  {label}
+                  <div className="flex items-center space-x-2">
+                    <i className={`${icon} text-sm`}></i>
+                    <span>{label}</span>
+                  </div>
+                  {activeSection === id && (
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div>
+                  )}
                 </button>
               ))}
             </div>
             
-            <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="magical-button text-white font-semibold" asChild>
+            <div className="flex space-x-3">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="group relative overflow-hidden bg-transparent border-2 border-white/30 text-white font-semibold px-4 py-2 rounded-xl transition-all duration-300 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105" 
+                asChild
+              >
                 <a 
                   href="https://github.com/technicalwhitehat-yt/CookPhish" 
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="github-btn"
                 >
-                  <i className="fab fa-github mr-2"></i>
-                  Get Started
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center space-x-2">
+                    <i className="fab fa-github text-lg"></i>
+                    <span>Get Started</span>
+                  </div>
                 </a>
               </Button>
-              <Button size="sm" className="magical-button text-white font-semibold" asChild>
+              <Button 
+                size="sm" 
+                className="group relative overflow-hidden bg-gradient-to-r from-red-500/80 to-red-600/80 border border-red-400/50 text-white font-semibold px-4 py-2 rounded-xl transition-all duration-300 hover:from-red-500 hover:to-red-600 hover:shadow-lg hover:shadow-red-500/30 hover:scale-105" 
+                asChild
+              >
                 <a 
                   href="https://youtube.com/@technicalwhitehat" 
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="youtube-btn"
                 >
-                  <i className="fab fa-youtube mr-2 text-red-400"></i>
-                  YouTube
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center space-x-2">
+                    <i className="fab fa-youtube text-lg"></i>
+                    <span>YouTube</span>
+                  </div>
                 </a>
               </Button>
             </div>
