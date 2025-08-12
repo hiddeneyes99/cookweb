@@ -346,37 +346,102 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:border-purple-300/60">
+              <Card className="bg-white/10 backdrop-blur-md border border-green-300/40 rounded-2xl shadow-xl shadow-green-500/20 hover:shadow-2xl hover:shadow-green-400/30 transition-all duration-300 hover:border-green-300/60">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-green-500/30 to-green-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-green-500/30">
-                      <i className="fab fa-android text-xl text-green-400"></i>
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-500/30 to-green-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-green-500/30">
+                      <i className="fab fa-android text-2xl text-green-400"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white">Termux (Android)</h3>
-                      <p className="text-sm text-white/60">For Android devices</p>
+                      <h3 className="text-2xl font-bold text-white">Termux (Android)</h3>
+                      <p className="text-sm text-white/60">Complete setup for Android devices</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="code-block p-4 group relative">
-                      <div className="flex items-center justify-between">
-                        <code className="text-sm text-green-300 font-mono flex-1">pkg update && pkg upgrade -y && pkg install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish</code>
+                    {/* Step-by-step commands */}
+                    <div className="space-y-3">
+                      <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-green-300 font-semibold text-sm">Step 1: Update packages</span>
+                          <button 
+                            className="copy-button"
+                            onClick={(e) => {
+                              navigator.clipboard.writeText('pkg update && pkg upgrade -y');
+                              const btn = e.target as HTMLButtonElement;
+                              const original = btn.innerHTML;
+                              btn.innerHTML = '✓ Copied!';
+                              setTimeout(() => btn.innerHTML = original, 2000);
+                            }}
+                            data-testid="copy-termux-update"
+                          >
+                            <i className="fas fa-copy mr-1"></i>Copy
+                          </button>
+                        </div>
+                        <code className="text-green-300 font-mono text-sm block">pkg update && pkg upgrade -y</code>
+                      </div>
+
+                      <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-green-300 font-semibold text-sm">Step 2: Install Git</span>
+                          <button 
+                            className="copy-button"
+                            onClick={(e) => {
+                              navigator.clipboard.writeText('pkg install git -y');
+                              const btn = e.target as HTMLButtonElement;
+                              const original = btn.innerHTML;
+                              btn.innerHTML = '✓ Copied!';
+                              setTimeout(() => btn.innerHTML = original, 2000);
+                            }}
+                            data-testid="copy-termux-git"
+                          >
+                            <i className="fas fa-copy mr-1"></i>Copy
+                          </button>
+                        </div>
+                        <code className="text-green-300 font-mono text-sm block">pkg install git -y</code>
+                      </div>
+
+                      <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-green-300 font-semibold text-sm">Step 3: Clone & Run</span>
+                          <button 
+                            className="copy-button"
+                            onClick={(e) => {
+                              navigator.clipboard.writeText('git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish');
+                              const btn = e.target as HTMLButtonElement;
+                              const original = btn.innerHTML;
+                              btn.innerHTML = '✓ Copied!';
+                              setTimeout(() => btn.innerHTML = original, 2000);
+                            }}
+                            data-testid="copy-termux-clone"
+                          >
+                            <i className="fas fa-copy mr-1"></i>Copy
+                          </button>
+                        </div>
+                        <code className="text-green-300 font-mono text-sm block break-all">git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish</code>
+                      </div>
+                    </div>
+
+                    {/* One-line command */}
+                    <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30 mt-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-bold text-green-300">📱 One-Line Installation</h4>
                         <button 
-                          className="copy-button ml-4"
+                          className="copy-button"
                           onClick={(e) => {
-                            navigator.clipboard.writeText('pkg update && pkg upgrade -y && pkg install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish');
+                            navigator.clipboard.writeText('pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish');
                             const btn = e.target as HTMLButtonElement;
-                            btn.textContent = 'Copied!';
-                            setTimeout(() => btn.textContent = 'Copy', 2000);
+                            const original = btn.innerHTML;
+                            btn.innerHTML = '✓ Copied!';
+                            setTimeout(() => btn.innerHTML = original, 2000);
                           }}
                           data-testid="copy-termux-all"
                         >
-                          Copy
+                          <i className="fas fa-copy mr-1"></i>Copy All
                         </button>
                       </div>
+                      <code className="text-green-300 font-mono text-xs block break-all">pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish</code>
                     </div>
-                    <p className="text-white/60 text-xs mt-2">📱 Complete one-line installation for Termux</p>
                   </div>
                 </CardContent>
               </Card>
@@ -388,82 +453,179 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:border-purple-300/60">
+              <Card className="bg-white/10 backdrop-blur-md border border-blue-300/40 rounded-2xl shadow-xl shadow-blue-500/20 hover:shadow-2xl hover:shadow-blue-400/30 transition-all duration-300 hover:border-blue-300/60">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/30">
-                      <i className="fab fa-linux text-xl text-blue-400"></i>
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/30">
+                      <i className="fab fa-linux text-2xl text-blue-400"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white">Kali Linux / Debian</h3>
-                      <p className="text-sm text-white/60">For Linux systems</p>
+                      <h3 className="text-2xl font-bold text-white">Kali Linux / Debian</h3>
+                      <p className="text-sm text-white/60">Professional setup for Linux systems</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="code-block p-4 group relative">
-                      <div className="flex items-center justify-between">
-                        <code className="text-sm text-blue-300 font-mono flex-1">sudo apt-get update && upgrade -y && apt-get install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish</code>
+                    {/* Step-by-step commands */}
+                    <div className="space-y-3">
+                      <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-blue-300 font-semibold text-sm">Step 1: Update system</span>
+                          <button 
+                            className="copy-button"
+                            onClick={(e) => {
+                              navigator.clipboard.writeText('sudo apt update && sudo apt upgrade -y');
+                              const btn = e.target as HTMLButtonElement;
+                              const original = btn.innerHTML;
+                              btn.innerHTML = '✓ Copied!';
+                              setTimeout(() => btn.innerHTML = original, 2000);
+                            }}
+                            data-testid="copy-kali-update"
+                          >
+                            <i className="fas fa-copy mr-1"></i>Copy
+                          </button>
+                        </div>
+                        <code className="text-blue-300 font-mono text-sm block">sudo apt update && sudo apt upgrade -y</code>
+                      </div>
+
+                      <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-blue-300 font-semibold text-sm">Step 2: Install Git</span>
+                          <button 
+                            className="copy-button"
+                            onClick={(e) => {
+                              navigator.clipboard.writeText('sudo apt install git -y');
+                              const btn = e.target as HTMLButtonElement;
+                              const original = btn.innerHTML;
+                              btn.innerHTML = '✓ Copied!';
+                              setTimeout(() => btn.innerHTML = original, 2000);
+                            }}
+                            data-testid="copy-kali-git"
+                          >
+                            <i className="fas fa-copy mr-1"></i>Copy
+                          </button>
+                        </div>
+                        <code className="text-blue-300 font-mono text-sm block">sudo apt install git -y</code>
+                      </div>
+
+                      <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-blue-300 font-semibold text-sm">Step 3: Clone & Run</span>
+                          <button 
+                            className="copy-button"
+                            onClick={(e) => {
+                              navigator.clipboard.writeText('git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish');
+                              const btn = e.target as HTMLButtonElement;
+                              const original = btn.innerHTML;
+                              btn.innerHTML = '✓ Copied!';
+                              setTimeout(() => btn.innerHTML = original, 2000);
+                            }}
+                            data-testid="copy-kali-clone"
+                          >
+                            <i className="fas fa-copy mr-1"></i>Copy
+                          </button>
+                        </div>
+                        <code className="text-blue-300 font-mono text-sm block break-all">git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish</code>
+                      </div>
+                    </div>
+
+                    {/* One-line command */}
+                    <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30 mt-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-bold text-blue-300">💻 One-Line Installation</h4>
                         <button 
-                          className="copy-button ml-4"
+                          className="copy-button"
                           onClick={(e) => {
-                            navigator.clipboard.writeText('sudo apt-get update && upgrade -y && apt-get install git && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish');
+                            navigator.clipboard.writeText('sudo apt update && sudo apt upgrade -y && sudo apt install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish');
                             const btn = e.target as HTMLButtonElement;
-                            btn.textContent = 'Copied!';
-                            setTimeout(() => btn.textContent = 'Copy', 2000);
+                            const original = btn.innerHTML;
+                            btn.innerHTML = '✓ Copied!';
+                            setTimeout(() => btn.innerHTML = original, 2000);
                           }}
                           data-testid="copy-kali-all"
                         >
-                          Copy
+                          <i className="fas fa-copy mr-1"></i>Copy All
                         </button>
                       </div>
+                      <code className="text-blue-300 font-mono text-xs block break-all">sudo apt update && sudo apt upgrade -y && sudo apt install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish</code>
                     </div>
-                    <p className="text-white/60 text-xs mt-2">💻 Complete one-line installation for Kali Linux</p>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
           </div>
 
-          {/* Requirements */}
+          {/* Requirements & Tips */}
           <motion.div 
-            className="mt-12 max-w-2xl mx-auto"
+            className="mt-12 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:border-purple-300/60">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-yellow-500/30">
-                    <i className="fas fa-cog text-xl text-yellow-400"></i>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-white/10 backdrop-blur-md border border-yellow-300/40 rounded-2xl shadow-xl shadow-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-400/30 transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 rounded-xl flex items-center justify-center mr-3 shadow-lg shadow-yellow-500/30">
+                      <i className="fas fa-cog text-lg text-yellow-400"></i>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Dependencies</h3>
+                      <p className="text-xs text-white/60">Required packages</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white">Dependencies</h3>
-                    <p className="text-sm text-white/60">Install required packages</p>
+                  
+                  <div className="bg-black/30 rounded-lg p-3 border border-yellow-400/30">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-yellow-300 font-semibold text-xs">Install Python packages</span>
+                      <button 
+                        className="copy-button text-xs"
+                        onClick={(e) => {
+                          navigator.clipboard.writeText('pip install -r requirements.txt');
+                          const btn = e.target as HTMLButtonElement;
+                          const original = btn.innerHTML;
+                          btn.innerHTML = '✓';
+                          setTimeout(() => btn.innerHTML = original, 2000);
+                        }}
+                        data-testid="copy-requirements"
+                      >
+                        <i className="fas fa-copy"></i>
+                      </button>
+                    </div>
+                    <code className="text-yellow-300 font-mono text-xs block">pip install -r requirements.txt</code>
                   </div>
-                </div>
-                
-                <div className="code-block p-4 group relative">
-                  <div className="flex items-center justify-between">
-                    <code className="text-sm text-yellow-300 font-mono flex-1">pip install -r requirements.txt</code>
-                    <button 
-                      className="copy-button ml-4"
-                      onClick={(e) => {
-                        navigator.clipboard.writeText('pip install -r requirements.txt');
-                        const btn = e.target as HTMLButtonElement;
-                        btn.textContent = 'Copied!';
-                        setTimeout(() => btn.textContent = 'Copy', 2000);
-                      }}
-                      data-testid="copy-requirements"
-                    >
-                      Copy
-                    </button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-xl flex items-center justify-center mr-3 shadow-lg shadow-purple-500/30">
+                      <i className="fas fa-lightbulb text-lg text-purple-400"></i>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Pro Tips</h3>
+                      <p className="text-xs text-white/60">Important notes</p>
+                    </div>
                   </div>
-                </div>
-                <p className="text-white/60 text-xs mt-2">🔧 Note: You must clone the repo via Git to enable auto-update functionality</p>
-              </CardContent>
-            </Card>
+                  
+                  <div className="space-y-2 text-xs text-white/80">
+                    <div className="flex items-start space-x-2">
+                      <span className="text-purple-400">•</span>
+                      <span>Use Git clone for auto-update functionality</span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <span className="text-purple-400">•</span>
+                      <span>Run with sudo on Linux for full permissions</span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <span className="text-purple-400">•</span>
+                      <span>Ensure stable internet connection during setup</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -736,13 +898,13 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <h2 className="text-4xl font-bold mb-2 text-white">Ahmar</h2>
+                  <h2 className="text-4xl font-bold mb-2 text-white">Afsar Ali</h2>
                   <p className="text-2xl text-orange-300 mb-2 font-semibold">Technical White Hat Founder</p>
                   <p className="text-lg text-white/90 mb-6">20 Years Old • Full Stack Developer • Ethical Hacker • From India 🇮🇳</p>
                   
                   <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/20 max-w-3xl mx-auto">
                     <p className="text-white/90 leading-relaxed text-lg">
-                      Namaste! I'm <strong className="text-orange-300">Ahmar</strong>, also known as <strong className="text-green-300">Ahmar Bhai</strong> by my community. 
+                      Assalamu alaikum! I'm <strong className="text-orange-300">Afsar</strong>, also known as <strong className="text-green-300">Ahmar Bhai</strong> by my community. 
                       At just 20, I founded <strong className="text-white">Technical White Hat (TWH)</strong> with a passion for cybersecurity. 
                       I don't just create hacking tools - I'm a complete developer who builds websites, mobile apps, AI solutions, and teaches ethical hacking. 
                       Whatever I do, I do it with my heart because I love working on my own terms. CookPhish is just one of many projects I've created!
@@ -841,7 +1003,9 @@ export default function Home() {
                 {/* Quote Section */}
                 <div className="mt-8 bg-gradient-to-r from-orange-500/20 via-white/10 to-green-500/20 rounded-2xl p-6 border border-orange-400/30">
                   <blockquote className="text-white/90 italic text-lg">
-                    "मैं अपने हिसाब से काम करने में मज़ा पाता हूं, इसलिए जो भी करता हूं दिल से करता हूं"
+                    "Bharat aage tha, aage hai, aur aage rahega — aur jab-jab koi hamare desh ko neecha dikhane ki koshish karega, tab-tab hum aisa karege jo duniya ne kabhi socha bhi nahi hoga."
+  <br />
+                    Jai Hind, Jai Bharat
                   </blockquote>
                   <p className="text-orange-300 mt-2 font-semibold">- Ahmar, Founder of Technical White Hat</p>
                 </div>
