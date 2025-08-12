@@ -1,0 +1,1017 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookPhish - Advanced Phishing Simulation Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'matrix': '#00ff88',
+                        'cyber-purple': '#8b5cf6',
+                        'cyber-blue': '#06b6d4',
+                        'cyber-dark': '#0a0a0a',
+                        'cyber-navy': '#1a1a2e',
+                        'cyber-midnight': '#16213e'
+                    },
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'matrix-rain': 'matrixRain 2s linear infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'cyber-bounce': 'cyberBounce 1s ease-out',
+                        'scan-line': 'scanLine 2s linear infinite'
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @keyframes matrixRain {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88, 0 0 60px #00ff88; }
+            100% { box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        @keyframes cyberBounce {
+            0% { transform: scale(0.8) rotateY(0deg); opacity: 0; }
+            50% { transform: scale(1.05) rotateY(180deg); opacity: 0.8; }
+            100% { transform: scale(1) rotateY(360deg); opacity: 1; }
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+        
+        .matrix-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .matrix-char {
+            position: absolute;
+            color: #00ff88;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            animation: matrixRain 2s linear infinite;
+            opacity: 0.7;
+        }
+        
+        .cyber-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .terminal-window {
+            background: linear-gradient(145deg, #111111, #1a1a1a);
+            border-radius: 10px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            animation: scanLine 2s linear infinite;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #00ff88;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="matrix-bg text-white font-inter">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-overlay">
+        <div class="text-center">
+            <div class="text-6xl font-orbitron font-bold text-matrix mb-8 animate-glow-pulse">
+                COOKPHISH
+            </div>
+            <div class="text-xl font-mono mb-8">Initializing Hacking Framework...</div>
+            <div class="w-64 h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div id="progressBar" class="h-full bg-gradient-to-r from-matrix to-cyber-blue transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div id="loadingText" class="mt-4 font-mono text-sm text-matrix">Loading modules...</div>
+        </div>
+        
+        <!-- Matrix Rain Effect -->
+        <div id="matrixRain" class="absolute inset-0 pointer-events-none"></div>
+    </div>
+
+    <!-- Particle Background -->
+    <div id="particleContainer" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-cyber-dark/80 backdrop-blur-md border-b border-cyber-purple/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="text-2xl font-orbitron font-bold text-matrix">
+                        <i class="fas fa-skull-crossbones mr-2"></i>CookPhish
+                    </div>
+                    <span class="text-sm bg-cyber-purple/20 px-2 py-1 rounded font-mono">v3.0.0</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#features" class="hover:text-matrix transition-colors duration-300">Features</a>
+                    <a href="#installation" class="hover:text-matrix transition-colors duration-300">Installation</a>
+                    <a href="#usage" class="hover:text-matrix transition-colors duration-300">Usage</a>
+                    <a href="#author" class="hover:text-matrix transition-colors duration-300">Author</a>
+                    <a href="#education" class="hover:text-matrix transition-colors duration-300">Security Education</a>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="https://github.com/technicalwhitehat-yt/CookPhish" class="text-matrix hover:text-white transition-colors duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://youtube.com/@technicalwhitehat" class="text-red-500 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="scan-line"></div>
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8 animate-cyber-bounce">
+                    <h1 class="text-8xl md:text-9xl font-orbitron font-black text-transparent bg-clip-text bg-gradient-to-r from-matrix via-cyber-purple to-cyber-blue mb-4">
+                        COOKPHISH
+                    </h1>
+                    <div class="text-xl md:text-2xl font-mono text-matrix mb-4">
+                        Advanced Instagram Phishing Simulation Framework
+                    </div>
+                    <div class="text-lg text-gray-300">
+                        Created by <span class="text-cyber-purple font-semibold">Technical White Hat</span> from India
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="cyber-glow p-6 rounded-lg transform hover:scale-105 transition-all duration-300 animate-float">
+                        <i class="fas fa-shield-alt text-3xl text-matrix mb-4"></i>
+                        <h3 class="text-xl font-orbitron mb-2">Ethical Testing</h3>
+                        <p class="text-sm text-gray-400">Designed for cybersecurity education and authorized penetration testing</p>
+                    </div>
+                    
+                    <div class="cyber-glow p-6 rounded-lg transform hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.2s;">
+                        <i class="fas fa-terminal text-3xl text-cyber-purple mb-4"></i>
+                        <h3 class="text-xl font-orbitron mb-2">Advanced Framework</h3>
+                        <p class="text-sm text-gray-400">Complete phishing simulation with 2FA bypass and IP logging</p>
+                    </div>
+                    
+                    <div class="cyber-glow p-6 rounded-lg transform hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.4s;">
+                        <i class="fas fa-mobile-alt text-3xl text-cyber-blue mb-4"></i>
+                        <h3 class="text-xl font-orbitron mb-2">Multi-Platform</h3>
+                        <p class="text-sm text-gray-400">Supports Termux, Kali Linux, and Debian-based systems</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('installation')" class="bg-gradient-to-r from-matrix to-cyber-blue hover:from-cyber-blue hover:to-matrix px-8 py-3 rounded-lg font-orbitron font-bold transform hover:scale-105 transition-all duration-300 cyber-glow">
+                        <i class="fas fa-download mr-2"></i>Get Started
+                    </button>
+                    <button onclick="scrollToSection('education')" class="border border-cyber-purple hover:bg-cyber-purple/20 px-8 py-3 rounded-lg font-orbitron font-bold transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-graduation-cap mr-2"></i>Learn Security
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-matrix to-cyber-purple mb-4">
+                    Advanced Features
+                </h2>
+                <p class="text-xl text-gray-400">Professional-grade phishing simulation capabilities</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Cards -->
+                <div class="terminal-window p-6 transform hover:scale-105 transition-all duration-300">
+                    <div class="bg-gray-900 rounded-t-lg p-2 mb-4">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-instagram text-3xl text-purple-500 mb-4"></i>
+                    <h3 class="text-xl font-orbitron mb-3">Instagram Clone</h3>
+                    <p class="text-gray-400 mb-4">Highly realistic Instagram login page simulation with pixel-perfect accuracy</p>
+                    <div class="text-matrix font-mono text-sm">Status: Active</div>
+                </div>
+                
+                <div class="terminal-window p-6 transform hover:scale-105 transition-all duration-300">
+                    <div class="bg-gray-900 rounded-t-lg p-2 mb-4">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-lock text-3xl text-matrix mb-4"></i>
+                    <h3 class="text-xl font-orbitron mb-3">2FA Bypass</h3>
+                    <p class="text-gray-400 mb-4">Simulates two-factor authentication including TOTP, WhatsApp, and SMS methods</p>
+                    <div class="text-matrix font-mono text-sm">Algorithms: TOTP, SMS, WhatsApp</div>
+                </div>
+                
+                <div class="terminal-window p-6 transform hover:scale-105 transition-all duration-300">
+                    <div class="bg-gray-900 rounded-t-lg p-2 mb-4">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-network-wired text-3xl text-cyber-blue mb-4"></i>
+                    <h3 class="text-xl font-orbitron mb-3">IP Logging</h3>
+                    <p class="text-gray-400 mb-4">Comprehensive victim data collection including IP addresses, user agents, and timestamps</p>
+                    <div class="text-matrix font-mono text-sm">Logs: IP, UserAgent, Timestamp</div>
+                </div>
+                
+                <div class="terminal-window p-6 transform hover:scale-105 transition-all duration-300">
+                    <div class="bg-gray-900 rounded-t-lg p-2 mb-4">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-cloud text-3xl text-cyber-purple mb-4"></i>
+                    <h3 class="text-xl font-orbitron mb-3">Tunneling Support</h3>
+                    <p class="text-gray-400 mb-4">Built-in support for Cloudflared and Tunnelmole for secure remote access</p>
+                    <div class="text-matrix font-mono text-sm">Protocols: Cloudflared, Tunnelmole</div>
+                </div>
+                
+                <div class="terminal-window p-6 transform hover:scale-105 transition-all duration-300">
+                    <div class="bg-gray-900 rounded-t-lg p-2 mb-4">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-sync-alt text-3xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-orbitron mb-3">Auto-Update</h3>
+                    <p class="text-gray-400 mb-4">GitHub-based automatic update system keeps the framework current</p>
+                    <div class="text-matrix font-mono text-sm">Method: Git-based updates</div>
+                </div>
+                
+                <div class="terminal-window p-6 transform hover:scale-105 transition-all duration-300">
+                    <div class="bg-gray-900 rounded-t-lg p-2 mb-4">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-paint-brush text-3xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-orbitron mb-3">Dynamic UI</h3>
+                    <p class="text-gray-400 mb-4">Colorful gradient banners and modern terminal interface design</p>
+                    <div class="text-matrix font-mono text-sm">Framework: Flask-based</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="py-20 bg-cyber-navy/20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue to-matrix mb-4">
+                    Installation Guide
+                </h2>
+                <p class="text-xl text-gray-400">Get CookPhish running on your system in minutes</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Termux Installation -->
+                <div class="terminal-window p-6">
+                    <div class="bg-gray-900 rounded-t-lg p-3 mb-6 flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-android text-matrix"></i>
+                            <span class="font-mono text-sm">Termux (Android)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="font-mono text-sm space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-matrix mr-2">$</span>
+                            <span class="text-gray-300">pkg update && pkg upgrade -y</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('pkg update && pkg upgrade -y')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-matrix mr-2">$</span>
+                            <span class="text-gray-300">pkg install git</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('pkg install git')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-matrix mr-2">$</span>
+                            <span class="text-gray-300">git clone https://github.com/technicalwhitehat-yt/CookPhish.git</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('git clone https://github.com/technicalwhitehat-yt/CookPhish.git')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-matrix mr-2">$</span>
+                            <span class="text-gray-300">cd CookPhish</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('cd CookPhish')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-matrix mr-2">$</span>
+                            <span class="text-gray-300">bash CookPhish</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('bash CookPhish')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kali Linux Installation -->
+                <div class="terminal-window p-6">
+                    <div class="bg-gray-900 rounded-t-lg p-3 mb-6 flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-linux text-cyber-blue"></i>
+                            <span class="font-mono text-sm">Kali Linux / Debian</span>
+                        </div>
+                    </div>
+                    
+                    <div class="font-mono text-sm space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-cyber-blue mr-2">#</span>
+                            <span class="text-gray-300">sudo apt-get update && upgrade -y</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('sudo apt-get update && upgrade -y')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-cyber-blue mr-2">#</span>
+                            <span class="text-gray-300">apt-get install git</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('apt-get install git')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-cyber-blue mr-2">#</span>
+                            <span class="text-gray-300">git clone https://github.com/technicalwhitehat-yt/CookPhish.git</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('git clone https://github.com/technicalwhitehat-yt/CookPhish.git')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-cyber-blue mr-2">#</span>
+                            <span class="text-gray-300">cd CookPhish</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('cd CookPhish')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-cyber-blue mr-2">#</span>
+                            <span class="text-gray-300">sudo bash CookPhish</span>
+                            <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('sudo bash CookPhish')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Requirements -->
+            <div class="mt-12 terminal-window p-6 max-w-2xl mx-auto">
+                <div class="bg-gray-900 rounded-t-lg p-3 mb-6 flex items-center justify-between">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-cog text-yellow-500"></i>
+                        <span class="font-mono text-sm">Dependencies</span>
+                    </div>
+                </div>
+                
+                <div class="font-mono text-sm">
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-500 mr-2">$</span>
+                        <span class="text-gray-300">pip install -r requirements.txt</span>
+                        <button class="ml-auto text-gray-500 hover:text-matrix transition-colors" onclick="copyToClipboard('pip install -r requirements.txt')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="text-gray-500 text-xs">
+                        ⚠️ Run this command if you encounter any errors during execution
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section id="usage" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-matrix to-cyber-purple mb-4">
+                    Usage Instructions
+                </h2>
+                <p class="text-xl text-gray-400">Step-by-step guide to using CookPhish effectively</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="terminal-window p-6">
+                        <h3 class="text-2xl font-orbitron mb-4 text-matrix">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            Quick Start
+                        </h3>
+                        <ol class="space-y-4 font-mono text-sm">
+                            <li class="flex items-start">
+                                <span class="bg-matrix text-black w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">1</span>
+                                <div>
+                                    <div class="text-white mb-1">Launch CookPhish</div>
+                                    <div class="text-gray-400">Execute <code class="bg-gray-800 px-1 rounded">./CookPhish</code> in terminal</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-cyber-purple text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">2</span>
+                                <div>
+                                    <div class="text-white mb-1">Auto-update Check</div>
+                                    <div class="text-gray-400">Framework automatically checks for GitHub updates</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-cyber-blue text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">3</span>
+                                <div>
+                                    <div class="text-white mb-1">Server Startup</div>
+                                    <div class="text-gray-400">Local phishing server starts on port <code class="bg-gray-800 px-1 rounded">8080</code></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">4</span>
+                                <div>
+                                    <div class="text-white mb-1">Tunnel Setup</div>
+                                    <div class="text-gray-400">Use cloudflared or tunnelmole for public access</div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="terminal-window p-6">
+                        <h3 class="text-2xl font-orbitron mb-4 text-cyber-blue">
+                            <i class="fas fa-file-alt mr-2"></i>
+                            Log Files
+                        </h3>
+                        <div class="space-y-3 font-mono text-sm">
+                            <div class="flex items-center justify-between p-3 bg-gray-800 rounded">
+                                <div>
+                                    <div class="text-matrix">ip_agent.log</div>
+                                    <div class="text-gray-400 text-xs">IP addresses and user agents</div>
+                                </div>
+                                <i class="fas fa-network-wired text-matrix"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-800 rounded">
+                                <div>
+                                    <div class="text-green-500">correct_pass_user.log</div>
+                                    <div class="text-gray-400 text-xs">Valid credentials captured</div>
+                                </div>
+                                <i class="fas fa-check-circle text-green-500"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-800 rounded">
+                                <div>
+                                    <div class="text-red-500">wrong_pass.log</div>
+                                    <div class="text-gray-400 text-xs">Invalid login attempts</div>
+                                </div>
+                                <i class="fas fa-times-circle text-red-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terminal-window p-6">
+                    <h3 class="text-2xl font-orbitron mb-6 text-cyber-purple">
+                        <i class="fas fa-mobile-alt mr-2"></i>
+                        Mobile Testing Setup
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="border border-cyber-purple/30 rounded-lg p-4">
+                            <h4 class="text-lg font-semibold mb-3 text-matrix">Recommended Browser</h4>
+                            <p class="text-gray-400 mb-4">For testing with cookie injection support:</p>
+                            <a href="https://play.google.com/store/apps/details?id=com.lemurbrowser.exts" 
+                               class="inline-flex items-center bg-gradient-to-r from-matrix to-cyber-blue px-4 py-2 rounded font-semibold hover:scale-105 transition-transform">
+                                <i class="fas fa-download mr-2"></i>
+                                Download Browser APK
+                            </a>
+                        </div>
+                        
+                        <div class="border border-cyber-blue/30 rounded-lg p-4">
+                            <h4 class="text-lg font-semibold mb-3 text-cyber-blue">Cookie Editor Setup</h4>
+                            <ol class="text-sm space-y-2 text-gray-400">
+                                <li>1. Install the recommended browser</li>
+                                <li>2. Visit Chrome Web Store</li>
+                                <li>3. Install "Cookies Editor" extension</li>
+                                <li>4. Launch CookPhish phishing page</li>
+                                <li>5. Use extension to modify <code class="bg-gray-800 px-1 rounded">sessionid</code> cookies</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-exclamation-triangle text-yellow-500 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="text-yellow-500 font-semibold mb-1">Important Notice</h4>
+                                    <p class="text-gray-400 text-sm">Always obtain proper authorization before conducting any security testing. This tool is for educational purposes only.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="author" class="py-20 bg-cyber-navy/20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-12">
+                    <h2 class="text-5xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-purple to-matrix mb-4">
+                        Technical White Hat
+                    </h2>
+                    <p class="text-xl text-gray-400">Cybersecurity Expert from India</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="cyber-glow p-8 rounded-lg">
+                        <div class="w-32 h-32 bg-gradient-to-br from-matrix to-cyber-purple rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-user-ninja text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-orbitron mb-4">About the Developer</h3>
+                        <p class="text-gray-400">
+                            Technical White Hat (TWH) is a passionate cybersecurity researcher and ethical hacker from India. 
+                            Dedicated to educating the community about cybersecurity threats and defensive strategies through 
+                            practical tools and comprehensive tutorials.
+                        </p>
+                    </div>
+                    
+                    <div class="cyber-glow p-8 rounded-lg">
+                        <i class="fas fa-shield-alt text-4xl text-matrix mb-6"></i>
+                        <h3 class="text-2xl font-orbitron mb-4">Mission Statement</h3>
+                        <p class="text-gray-400">
+                            Creating advanced cybersecurity tools for educational purposes, conducting security research, 
+                            and promoting ethical hacking practices. Focused on building a safer digital environment 
+                            through knowledge sharing and responsible disclosure.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Social Media Links -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-orbitron mb-8 text-matrix">Connect & Follow</h3>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <a href="https://youtube.com/@technicalwhitehat" 
+                           class="flex items-center space-x-3 bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fab fa-youtube text-xl"></i>
+                            <span class="font-semibold">YouTube Channel</span>
+                        </a>
+                        
+                        <a href="https://instagram.com/technicalwhitehat" 
+                           class="flex items-center space-x-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fab fa-instagram text-xl"></i>
+                            <span class="font-semibold">Instagram</span>
+                        </a>
+                        
+                        <a href="https://t.me/technicalwhitehat" 
+                           class="flex items-center space-x-3 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fab fa-telegram text-xl"></i>
+                            <span class="font-semibold">Telegram</span>
+                        </a>
+                        
+                        <a href="https://github.com/technicalwhitehat-yt" 
+                           class="flex items-center space-x-3 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fab fa-github text-xl"></i>
+                            <span class="font-semibold">GitHub</span>
+                        </a>
+                        
+                        <a href="mailto:technicalwhitehat@protonmail.com" 
+                           class="flex items-center space-x-3 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-envelope text-xl"></i>
+                            <span class="font-semibold">Email</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Support Section -->
+                <div class="terminal-window p-8">
+                    <h3 class="text-2xl font-orbitron mb-6 text-cyber-blue">
+                        <i class="fas fa-heart mr-2"></i>
+                        Support My Work
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-sm">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Star the repository</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-share text-cyber-blue"></i>
+                            <span>Share with friends</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-graduation-cap text-matrix"></i>
+                            <span>Use in cyber education</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Education Section -->
+    <section id="education" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-matrix to-cyber-purple mb-4">
+                    Cybersecurity Education
+                </h2>
+                <p class="text-xl text-gray-400">Understanding phishing attacks and defense strategies</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div class="terminal-window p-8">
+                    <h3 class="text-3xl font-orbitron mb-6 text-red-500">
+                        <i class="fas fa-exclamation-triangle mr-3"></i>
+                        What is Phishing?
+                    </h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p>
+                            Phishing is a cybercrime where attackers impersonate legitimate organizations to steal sensitive information 
+                            such as usernames, passwords, credit card details, and other personal data.
+                        </p>
+                        <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <h4 class="text-red-500 font-semibold mb-2">Common Phishing Tactics:</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Fake login pages that mimic legitimate websites</li>
+                                <li>• Deceptive emails claiming urgent account issues</li>
+                                <li>• Social engineering to create false trust</li>
+                                <li>• URL spoofing and domain impersonation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terminal-window p-8">
+                    <h3 class="text-3xl font-orbitron mb-6 text-matrix">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Protection Strategies
+                    </h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p>
+                            Protecting yourself and your organization from phishing attacks requires awareness, 
+                            proper security measures, and continuous education.
+                        </p>
+                        <div class="bg-matrix/10 border border-matrix/30 rounded-lg p-4">
+                            <h4 class="text-matrix font-semibold mb-2">Best Practices:</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Always verify URLs before entering credentials</li>
+                                <li>• Enable two-factor authentication (2FA)</li>
+                                <li>• Be suspicious of urgent or threatening messages</li>
+                                <li>• Regular security awareness training</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Educational Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="cyber-glow p-6 rounded-lg transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-eye text-3xl text-cyber-blue mb-4"></i>
+                    <h4 class="text-xl font-orbitron mb-3">Recognition Training</h4>
+                    <p class="text-gray-400 text-sm">
+                        Learn to identify phishing attempts through visual cues, suspicious URLs, 
+                        and social engineering tactics commonly used by attackers.
+                    </p>
+                </div>
+                
+                <div class="cyber-glow p-6 rounded-lg transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-tools text-3xl text-yellow-500 mb-4"></i>
+                    <h4 class="text-xl font-orbitron mb-3">Technical Defenses</h4>
+                    <p class="text-gray-400 text-sm">
+                        Implement email filters, web security gateways, and endpoint protection 
+                        to create multiple layers of defense against phishing attacks.
+                    </p>
+                </div>
+                
+                <div class="cyber-glow p-6 rounded-lg transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-users text-3xl text-cyber-purple mb-4"></i>
+                    <h4 class="text-xl font-orbitron mb-3">Incident Response</h4>
+                    <p class="text-gray-400 text-sm">
+                        Develop proper procedures for responding to suspected phishing attacks, 
+                        including reporting mechanisms and damage mitigation strategies.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Legal Disclaimer -->
+            <div class="terminal-window p-8 border-2 border-red-500/50">
+                <div class="text-center">
+                    <i class="fas fa-gavel text-4xl text-red-500 mb-4"></i>
+                    <h3 class="text-2xl font-orbitron mb-6 text-red-500">Legal Disclaimer</h3>
+                    <div class="text-gray-300 space-y-4 max-w-3xl mx-auto">
+                        <p class="text-lg">
+                            <strong>CookPhish is created strictly for educational and ethical testing purposes.</strong>
+                        </p>
+                        <p>
+                            Using this tool on unauthorized targets is <strong class="text-red-500">illegal</strong> and may result in 
+                            criminal charges. The author is not responsible for any misuse or damage caused by this tool.
+                        </p>
+                        <p>
+                            Always obtain proper written authorization before conducting any security testing. 
+                            Use this tool only in controlled environments for learning cybersecurity concepts.
+                        </p>
+                        <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mt-6">
+                            <p class="text-red-400 font-semibold">
+                                Remember: With great power comes great responsibility. Stay ethical, stay legal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cyber-dark border-t border-cyber-purple/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <div class="text-3xl font-orbitron font-bold text-matrix mb-4">CookPhish</div>
+                <p class="text-gray-400 mb-6">Advanced Phishing Simulation Framework</p>
+                <p class="text-sm text-gray-500">
+                    Created with ❤️ by Technical White Hat | Made in India 🇮🇳
+                </p>
+                <div class="mt-8 text-xs text-gray-600">
+                    © 2024 CookPhish Framework. For educational purposes only.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sound Effects
+        const playClickSound = () => {
+            // TODO: Implement sound effects for button clicks
+            console.log('Click sound played');
+        };
+        
+        const playHoverSound = () => {
+            // TODO: Implement sound effects for hover interactions
+            console.log('Hover sound played');
+        };
+
+        // Loading Animation
+        (function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressBar = document.getElementById('progressBar');
+            const loadingText = document.getElementById('loadingText');
+            const matrixRain = document.getElementById('matrixRain');
+            
+            const loadingMessages = [
+                'Initializing framework...',
+                'Loading phishing modules...',
+                'Setting up 2FA bypass...',
+                'Configuring IP logging...',
+                'Preparing tunneling protocols...',
+                'Framework ready!'
+            ];
+            
+            let progress = 0;
+            let messageIndex = 0;
+            
+            // Create matrix rain effect
+            function createMatrixChar() {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = Math.random() > 0.5 ? '1' : '0';
+                char.style.left = Math.random() * 100 + '%';
+                char.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                matrixRain.appendChild(char);
+                
+                setTimeout(() => {
+                    char.remove();
+                }, 2000);
+            }
+            
+            // Generate matrix rain
+            const matrixInterval = setInterval(createMatrixChar, 100);
+            
+            // Progress simulation
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 20 + 5;
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    clearInterval(matrixInterval);
+                    
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                        startParticleSystem();
+                    }, 1000);
+                }
+                
+                progressBar.style.width = progress + '%';
+                
+                if (messageIndex < loadingMessages.length - 1 && progress > (messageIndex + 1) * 16.67) {
+                    messageIndex++;
+                    loadingText.textContent = loadingMessages[messageIndex];
+                }
+            }, 200);
+        })();
+
+        // Particle System
+        function startParticleSystem() {
+            const container = document.getElementById('particleContainer');
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = Math.random() * window.innerHeight + 'px';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                container.appendChild(particle);
+                
+                // Animate particle
+                const duration = Math.random() * 10000 + 5000;
+                particle.animate([
+                    { transform: 'translate(0, 0)', opacity: particle.style.opacity },
+                    { transform: `translate(${(Math.random() - 0.5) * 200}px, ${(Math.random() - 0.5) * 200}px)`, opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                }).addEventListener('finish', () => {
+                    particle.remove();
+                });
+            }
+            
+            // Create particles periodically
+            setInterval(createParticle, 1000);
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            playClickSound();
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show temporary feedback
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-20 right-4 bg-matrix text-black px-4 py-2 rounded-lg font-mono text-sm z-50';
+                notification.textContent = 'Copied to clipboard!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Add hover effects to interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const interactiveElements = document.querySelectorAll('button, a, .cyber-glow');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', playHoverSound);
+                element.addEventListener('click', playClickSound);
+            });
+            
+            // Smooth scroll behavior for navigation links
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply scroll animations to sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('section > div');
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
