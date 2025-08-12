@@ -1,57 +1,13 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import twhLogo from '@assets/technical white hat 2.0_1754987246786.jpg';
 
 export default function Pro() {
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [showDesktopAlert, setShowDesktopAlert] = useState(false);
-
-  useEffect(() => {
-    const checkDevice = () => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-      const isTablet = /ipad|android/i.test(userAgent) && window.innerWidth >= 768;
-      const desktop = !isMobile && window.innerWidth >= 1024;
-      
-      setIsDesktop(desktop);
-      setShowDesktopAlert(!desktop && !isMobile && !isTablet);
-    };
-
-    checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
-  }, []);
-
   return (
     <div className="min-h-screen modern-bg">
       <div className="min-h-screen text-white relative">
-        {/* Desktop Detection Alert */}
-        {showDesktopAlert && (
-          <motion.div 
-            className="fixed top-4 left-4 right-4 z-50 max-w-md mx-auto"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Alert className="bg-orange-500/20 border-orange-400/50 backdrop-blur-md">
-              <i className="fas fa-desktop text-orange-400"></i>
-              <AlertDescription className="text-white">
-                <strong>Switch to Desktop:</strong> For the best experience, please use a desktop or laptop computer.
-                <Button 
-                  variant="link" 
-                  className="text-orange-400 p-0 h-auto ml-2"
-                  onClick={() => setShowDesktopAlert(false)}
-                >
-                  Dismiss
-                </Button>
-              </AlertDescription>
-            </Alert>
-          </motion.div>
-        )}
         {/* Hero Section */}
         <section className="py-16 sm:py-20 px-4 sm:px-6">
           <div className="container mx-auto">
