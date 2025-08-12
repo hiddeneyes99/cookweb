@@ -707,42 +707,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Author Section */}
-      <section id="author" className="py-20 bg-white/5 backdrop-blur-sm">
-        <div className="container mx-auto px-6">
+      {/* Author Section - Proudly Indian */}
+      <section id="author" className="py-20 bg-gradient-to-br from-orange-500/10 via-white/5 to-green-500/10 backdrop-blur-sm relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-white/2 to-green-500/5"></div>
+        <div className="container mx-auto px-6 relative">
           <motion.div 
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Badge className="bg-purple-400/20 text-purple-300 border-purple-400/30 mb-8">
-              👨‍💻 Author Information
+            <Badge className="bg-orange-500/20 text-orange-300 border-orange-400/40 mb-8 text-lg px-6 py-2">
+              🇮🇳 Proudly Indian Developer
             </Badge>
             
-            <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:border-purple-300/60">
+            <Card className="indian-pride-bg backdrop-blur-md rounded-3xl shadow-2xl indian-flag-glow hover:shadow-3xl transition-all duration-500 border-2 border-orange-400/30">
               <CardContent className="p-12">
-                <div className="mb-8">
-                  <div className="w-24 h-24 rounded-full mx-auto mb-6 shadow-lg shadow-purple-500/30 overflow-hidden border-2 border-purple-300/40">
+                {/* Profile Section */}
+                <div className="mb-10">
+                  <div className="w-32 h-32 rounded-full mx-auto mb-8 shadow-2xl overflow-hidden border-4 tricolor-border relative">
                     <img 
                       src={twhLogo} 
-                      alt="Technical White Hat Logo" 
+                      alt="Ahmar - Technical White Hat Founder" 
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute bottom-0 right-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm">
+                      🇮🇳
+                    </div>
                   </div>
-                  <h2 className="text-3xl font-bold mb-4 text-white">Technical White Hat</h2>
-                  <p className="text-xl text-white/80 mb-6">Cybersecurity Researcher & Ethical Hacker from India</p>
-                  <p className="text-white/70 leading-relaxed max-w-2xl mx-auto">
-                    Passionate about cybersecurity education and ethical hacking. CookPhish is designed specifically 
-                    for educational purposes, security training, and authorized penetration testing to help security 
-                    professionals understand and defend against phishing attacks.
-                  </p>
+                  
+                  <h2 className="text-4xl font-bold mb-2 text-white">Ahmar</h2>
+                  <p className="text-2xl text-orange-300 mb-2 font-semibold">Technical White Hat Founder</p>
+                  <p className="text-lg text-white/90 mb-6">20 Years Old • Full Stack Developer • Ethical Hacker • From India 🇮🇳</p>
+                  
+                  <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/20 max-w-3xl mx-auto">
+                    <p className="text-white/90 leading-relaxed text-lg">
+                      Namaste! I'm <strong className="text-orange-300">Ahmar</strong>, also known as <strong className="text-green-300">Ahmar Bhai</strong> by my community. 
+                      At just 20, I founded <strong className="text-white">Technical White Hat (TWH)</strong> with a passion for cybersecurity. 
+                      I don't just create hacking tools - I'm a complete developer who builds websites, mobile apps, AI solutions, and teaches ethical hacking. 
+                      Whatever I do, I do it with my heart because I love working on my own terms. CookPhish is just one of many projects I've created!
+                    </p>
+                  </div>
                 </div>
 
-                <Separator className="my-8" />
+                {/* Skills Section */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-white mb-4">💻 What I Do</h3>
+                  <div className="grid md:grid-cols-4 gap-4">
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-orange-400/30">
+                      <i className="fas fa-shield-alt text-2xl text-red-400 mb-2"></i>
+                      <p className="text-sm text-white font-semibold">Ethical Hacking</p>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-orange-400/30">
+                      <i className="fas fa-code text-2xl text-blue-400 mb-2"></i>
+                      <p className="text-sm text-white font-semibold">Web Development</p>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-orange-400/30">
+                      <i className="fas fa-mobile-alt text-2xl text-green-400 mb-2"></i>
+                      <p className="text-sm text-white font-semibold">App Development</p>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-orange-400/30">
+                      <i className="fas fa-robot text-2xl text-purple-400 mb-2"></i>
+                      <p className="text-sm text-white font-semibold">AI Solutions</p>
+                    </div>
+                  </div>
+                </div>
 
+                <Separator className="my-8 bg-gradient-to-r from-orange-400 via-white to-green-400" />
+
+                {/* Social Media Buttons */}
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" size="lg" className="modern-button social-button youtube-button px-8 py-3" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button youtube-button px-6 py-3" asChild>
                     <a 
                       href="https://youtube.com/@technicalwhitehat" 
                       target="_blank"
@@ -750,10 +785,11 @@ export default function Home() {
                       data-testid="author-youtube"
                     >
                       <i className="fab fa-youtube text-red-400 mr-3 text-lg"></i>
-                      YouTube Channel
+                      YouTube
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="modern-button social-button instagram-button px-8 py-3" asChild>
+                  
+                  <Button variant="outline" size="lg" className="modern-button social-button instagram-button px-6 py-3" asChild>
                     <a 
                       href="https://instagram.com/technicalwhitehat" 
                       target="_blank"
@@ -764,7 +800,20 @@ export default function Home() {
                       Instagram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="modern-button social-button telegram-button px-8 py-3" asChild>
+                  
+                  <Button variant="outline" size="lg" className="modern-button social-button whatsapp-button px-6 py-3" asChild>
+                    <a 
+                      href="https://wa.me/917890144166" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="author-whatsapp"
+                    >
+                      <i className="fab fa-whatsapp text-green-400 mr-3 text-lg"></i>
+                      WhatsApp
+                    </a>
+                  </Button>
+                  
+                  <Button variant="outline" size="lg" className="modern-button social-button telegram-button px-6 py-3" asChild>
                     <a 
                       href="https://t.me/technicalwhitehat" 
                       target="_blank"
@@ -775,7 +824,8 @@ export default function Home() {
                       Telegram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="modern-button social-button github-button px-8 py-3" asChild>
+                  
+                  <Button variant="outline" size="lg" className="modern-button social-button github-button px-6 py-3" asChild>
                     <a 
                       href="https://github.com/technicalwhitehat-yt" 
                       target="_blank"
@@ -786,6 +836,14 @@ export default function Home() {
                       GitHub
                     </a>
                   </Button>
+                </div>
+
+                {/* Quote Section */}
+                <div className="mt-8 bg-gradient-to-r from-orange-500/20 via-white/10 to-green-500/20 rounded-2xl p-6 border border-orange-400/30">
+                  <blockquote className="text-white/90 italic text-lg">
+                    "मैं अपने हिसाब से काम करने में मज़ा पाता हूं, इसलिए जो भी करता हूं दिल से करता हूं"
+                  </blockquote>
+                  <p className="text-orange-300 mt-2 font-semibold">- Ahmar, Founder of Technical White Hat</p>
                 </div>
               </CardContent>
             </Card>
