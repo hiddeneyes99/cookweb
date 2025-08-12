@@ -2,6 +2,18 @@
 
 CookPhish is an advanced phishing simulation framework designed for cybersecurity education and ethical hacking training. This full-stack application provides a comprehensive platform for demonstrating social engineering techniques through Instagram clone simulations, featuring 2FA bypass capabilities, IP logging, and tunneling support. The project serves as an educational tool for security professionals to understand and defend against phishing attacks.
 
+## Recent Updates (January 2025)
+- ✅ Complete installation section redesign with step-by-step commands and individual copy buttons
+- ✅ Added direct download button with GitHub releases link (v3.0.0)
+- ✅ Implemented GitHub star/follow prompts in installation section
+- ✅ Redesigned video tutorials with clickable thumbnails (HACK1.png, HACK3.png)
+- ✅ Created Pro coming soon page with social media links and features preview
+- ✅ Added responsive header navigation with Home/Pro links
+- ✅ Made CookPhish header clickable for home navigation
+- ✅ Comprehensive SEO optimization with meta tags and Open Graph
+- ✅ Full responsive design for all devices (mobile, tablet, desktop)
+- ✅ Enhanced patriotic Indian theme with Ahmar's personal branding
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.

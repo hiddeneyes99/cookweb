@@ -334,9 +334,64 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-4">
               Quick <span className="text-white drop-shadow-2xl">Setup Guide</span>
             </h2>
-            <p className="text-xl text-white/80">
+            <p className="text-xl text-white/80 mb-6">
               Get CookPhish running on your system in just a few commands
             </p>
+            
+            {/* Download Button */}
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+              <Button 
+                size="lg" 
+                className="hero-button-primary px-8 py-4 text-lg font-semibold"
+                asChild
+              >
+                <a 
+                  href="https://github.com/technicalwhitehat-yt/CookPhish/releases/tag/v3.0.0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="direct-download"
+                >
+                  <i className="fas fa-download mr-3 text-xl"></i>
+                  Direct Download v3.0.0
+                </a>
+              </Button>
+              
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="social-button github-button px-6 py-3"
+                  asChild
+                >
+                  <a 
+                    href="https://github.com/technicalwhitehat-yt/CookPhish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="github-star"
+                  >
+                    <i className="fas fa-star mr-2"></i>
+                    Star
+                  </a>
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="social-button github-button px-6 py-3"
+                  asChild
+                >
+                  <a 
+                    href="https://github.com/technicalwhitehat-yt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="github-follow"
+                  >
+                    <i className="fas fa-user-plus mr-2"></i>
+                    Follow
+                  </a>
+                </Button>
+              </div>
+            </div>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8">
@@ -670,24 +725,6 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-6">
-                    <div className="aspect-video bg-black/30 rounded-xl border-2 border-green-400/30 flex items-center justify-center relative overflow-hidden group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
-                      <Button 
-                        className="modern-button youtube-button bg-red-600/80 hover:bg-red-500 text-white px-8 py-4 text-lg font-semibold"
-                        asChild
-                      >
-                        <a 
-                          href="https://youtube.com/@technicalwhitehat" 
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-testid="android-video"
-                        >
-                          <i className="fab fa-youtube mr-3 text-xl"></i>
-                          Watch Android Tutorial
-                        </a>
-                      </Button>
-                    </div>
-                    
                     <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30">
                       <h4 className="font-bold text-green-300 mb-2">📱 What You'll Learn:</h4>
                       <ul className="text-sm text-white/80 space-y-1">
@@ -696,6 +733,30 @@ export default function Home() {
                         <li>• Running phishing simulations</li>
                         <li>• Mobile-specific configurations</li>
                       </ul>
+                    </div>
+                    
+                    <div className="aspect-video bg-black/30 rounded-xl border-2 border-green-400/30 relative overflow-hidden group cursor-pointer">
+                      <a 
+                        href="https://youtube.com/@technicalwhitehat" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid="android-video"
+                        className="block w-full h-full"
+                      >
+                        <img 
+                          src="https://raw.githubusercontent.com/hiddeneyes99/hiddeneyes99/refs/heads/main/HACK1.png"
+                          alt="Android Tutorial Thumbnail"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Button 
+                            className="modern-button youtube-button bg-red-600/90 hover:bg-red-500 text-white px-6 py-3 text-lg font-semibold"
+                          >
+                            <i className="fab fa-youtube mr-2 text-xl"></i>
+                            Watch
+                          </Button>
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </CardContent>
@@ -721,24 +782,6 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-6">
-                    <div className="aspect-video bg-black/30 rounded-xl border-2 border-blue-400/30 flex items-center justify-center relative overflow-hidden group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
-                      <Button 
-                        className="modern-button youtube-button bg-red-600/80 hover:bg-red-500 text-white px-8 py-4 text-lg font-semibold"
-                        asChild
-                      >
-                        <a 
-                          href="https://youtube.com/@technicalwhitehat" 
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-testid="linux-video"
-                        >
-                          <i className="fab fa-youtube mr-3 text-xl"></i>
-                          Watch Linux Tutorial
-                        </a>
-                      </Button>
-                    </div>
-                    
                     <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30">
                       <h4 className="font-bold text-blue-300 mb-2">💻 What You'll Learn:</h4>
                       <ul className="text-sm text-white/80 space-y-1">
@@ -747,6 +790,30 @@ export default function Home() {
                         <li>• Professional penetration testing</li>
                         <li>• Security assessment techniques</li>
                       </ul>
+                    </div>
+                    
+                    <div className="aspect-video bg-black/30 rounded-xl border-2 border-blue-400/30 relative overflow-hidden group cursor-pointer">
+                      <a 
+                        href="https://youtube.com/@technicalwhitehat" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid="linux-video"
+                        className="block w-full h-full"
+                      >
+                        <img 
+                          src="https://raw.githubusercontent.com/hiddeneyes99/hiddeneyes99/refs/heads/main/HACK3.png"
+                          alt="Linux Tutorial Thumbnail"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Button 
+                            className="modern-button youtube-button bg-red-600/90 hover:bg-red-500 text-white px-6 py-3 text-lg font-semibold"
+                          >
+                            <i className="fab fa-youtube mr-2 text-xl"></i>
+                            Watch
+                          </Button>
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </CardContent>
@@ -898,13 +965,13 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <h2 className="text-4xl font-bold mb-2 text-white">Afsar Ali</h2>
+                  <h2 className="text-4xl font-bold mb-2 text-white">Ahmar</h2>
                   <p className="text-2xl text-orange-300 mb-2 font-semibold">Technical White Hat Founder</p>
                   <p className="text-lg text-white/90 mb-6">20 Years Old • Full Stack Developer • Ethical Hacker • From India 🇮🇳</p>
                   
                   <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/20 max-w-3xl mx-auto">
                     <p className="text-white/90 leading-relaxed text-lg">
-                      Assalamu alaikum! I'm <strong className="text-orange-300">Afsar</strong>, also known as <strong className="text-green-300">Ahmar Bhai</strong> by my community. 
+                      Namaste! I'm <strong className="text-orange-300">Ahmar</strong>, also known as <strong className="text-green-300">Ahmar Bhai</strong> by my community. 
                       At just 20, I founded <strong className="text-white">Technical White Hat (TWH)</strong> with a passion for cybersecurity. 
                       I don't just create hacking tools - I'm a complete developer who builds websites, mobile apps, AI solutions, and teaches ethical hacking. 
                       Whatever I do, I do it with my heart because I love working on my own terms. CookPhish is just one of many projects I've created!
