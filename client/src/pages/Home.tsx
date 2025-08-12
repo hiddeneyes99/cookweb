@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Link } from 'wouter';
 import ModernLoadingScreen from '@/components/ModernLoadingScreen';
 import exampleImage from '@assets/Untitled _1754988628893.png';
 import twhLogo from '@assets/technical white hat 2.0_1754987246786.jpg';
@@ -102,6 +103,16 @@ export default function Home() {
                   )}
                 </button>
               ))}
+              
+              {/* Pro Link Button */}
+              <Link href="/pro">
+                <button className="nav-link-button group relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 text-white/80 hover:text-white hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 border border-transparent hover:border-purple-400/30 hover:shadow-lg hover:shadow-purple-500/20" data-testid="nav-pro">
+                  <div className="flex items-center space-x-2">
+                    <i className="fas fa-crown text-sm text-purple-400"></i>
+                    <span>Pro</span>
+                  </div>
+                </button>
+              </Link>
             </div>
             
             <div className="flex space-x-3">
@@ -959,6 +970,119 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Pro Section */}
+      <section id="pro" className="py-20 bg-gradient-to-br from-purple-600/20 via-pink-500/10 to-orange-500/20 backdrop-blur-sm border-t border-purple-400/30">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Badge className="bg-purple-400/20 text-purple-300 border-purple-400/30 mb-4 text-lg px-6 py-2">
+              🚀 Coming Soon
+            </Badge>
+            <h2 className="text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+                CookPhish Pro
+              </span>
+            </h2>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Get ready for the most advanced phishing simulation framework with 
+              <strong className="text-purple-400"> unlimited features</strong>, 
+              <strong className="text-pink-400"> AI integration</strong>, and 
+              <strong className="text-orange-400"> zero limitations</strong>
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                icon: 'fas fa-infinity',
+                title: 'No Limitations',
+                description: 'Unlimited campaigns, targets, and advanced features without restrictions',
+                color: 'purple'
+              },
+              {
+                icon: 'fas fa-robot',
+                title: 'AI Integration',
+                description: 'AI-powered template generation and smart targeting capabilities',
+                color: 'pink'
+              },
+              {
+                icon: 'fas fa-chart-line',
+                title: 'Advanced Analytics',
+                description: 'Comprehensive reporting and detailed monitoring dashboard',
+                color: 'orange'
+              },
+              {
+                icon: 'fas fa-shield-alt',
+                title: 'Enhanced Security',
+                description: 'Better evasion techniques and professional-grade security tools',
+                color: 'blue'
+              },
+              {
+                icon: 'fas fa-users',
+                title: 'Team Collaboration',
+                description: 'Multi-user support and collaborative penetration testing',
+                color: 'cyan'
+              },
+              {
+                icon: 'fas fa-mobile-alt',
+                title: 'Mobile Optimized',
+                description: 'Advanced mobile interface with specialized phishing templates',
+                color: 'green'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl h-full shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:bg-white/15 hover:border-purple-300/60">
+                  <CardContent className="p-6 text-center">
+                    <div className={`w-12 h-12 bg-gradient-to-br from-${feature.color}-500/30 to-${feature.color}-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                      <i className={`${feature.icon} text-lg text-${feature.color}-400`}></i>
+                    </div>
+                    <h3 className="text-lg font-bold mb-3 text-white">{feature.title}</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link href="/pro">
+              <Button 
+                size="lg" 
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 border border-purple-400 text-white font-bold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:from-purple-400 hover:to-pink-400 hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 shadow-lg shadow-purple-500/30"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-300/20 to-pink-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/40 to-pink-500/40 rounded-xl blur opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative flex items-center space-x-3">
+                  <i className="fas fa-crown text-xl drop-shadow-sm"></i>
+                  <span>Learn More About Pro</span>
+                  <i className="fas fa-arrow-right text-lg group-hover:translate-x-1 transition-transform duration-300"></i>
+                </div>
+              </Button>
+            </Link>
+            
+            <p className="text-white/70 mt-4 text-sm">
+              Follow our social media for updates and early access announcements
+            </p>
+          </motion.div>
         </div>
       </section>
 
