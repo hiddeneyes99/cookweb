@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import ModernLoadingScreen from '@/components/ModernLoadingScreen';
-import exampleImage from '@assets/Untitled _1755008590694.png';
+import exampleImage from '@assets/Untitled _1754988628893.png';
 import twhLogo from '@assets/technical white hat 2.0_1754987246786.jpg';
 
 export default function Home() {
@@ -65,12 +65,10 @@ export default function Home() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <div className="text-3xl font-bold">
-                <span className="bg-gradient-to-r from-orange-400 via-white to-green-400 bg-clip-text text-transparent">
-                  CookPhish
-                </span>
+              <div className="text-2xl font-bold gradient-text">
+                CookPhish
               </div>
-              <Badge variant="secondary" className="bg-gradient-to-r from-orange-500/20 to-green-500/20 text-white border-orange-400/40 font-semibold">
+              <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
                 v3.0.0
               </Badge>
             </div>
