@@ -83,8 +83,8 @@ export default function Home() {
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`hover:text-yellow-300 transition-colors duration-300 ${
-                    activeSection === id ? 'text-yellow-300 font-medium' : 'text-white/80'
+                  className={`nav-link-button px-4 py-2 rounded-lg transition-all duration-300 relative ${
+                    activeSection === id ? 'text-yellow-300 font-medium bg-yellow-300/10' : 'text-white/80 hover:text-yellow-300 hover:bg-white/5'
                   }`}
                   data-testid={`nav-${id}`}
                 >
@@ -94,7 +94,7 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 rounded-lg backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
+              <Button variant="outline" size="sm" className="modern-button nav-button" asChild>
                 <a 
                   href="https://github.com/technicalwhitehat-yt/CookPhish" 
                   target="_blank"
@@ -105,14 +105,14 @@ export default function Home() {
                   Get Started
                 </a>
               </Button>
-              <Button size="sm" className="bg-purple-500/30 hover:bg-purple-400/40 text-white border-2 border-purple-300/60 rounded-lg backdrop-blur-sm shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 animated-button" asChild>
+              <Button size="sm" className="modern-button nav-button pulse-glow" asChild>
                 <a 
                   href="https://youtube.com/@technicalwhitehat" 
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="youtube-btn"
                 >
-                  <i className="fab fa-youtube mr-2"></i>
+                  <i className="fab fa-youtube mr-2 text-red-400"></i>
                   YouTube
                 </a>
               </Button>
@@ -157,21 +157,21 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-white text-[#652ca8] hover:bg-gray-100 font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                  className="modern-button hero-button-primary px-8 py-4 text-lg font-bold"
                   onClick={() => scrollToSection('installation')}
                   data-testid="get-started-btn"
                 >
-                  <i className="fas fa-download mr-2"></i>
+                  <i className="fas fa-download mr-3"></i>
                   Get Started
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-2 border-white/40 text-white hover:bg-white/15 px-8 py-4 rounded-xl backdrop-blur-sm transition-all duration-300"
+                  className="modern-button hero-button-secondary px-8 py-4 text-lg font-semibold"
                   onClick={() => scrollToSection('features')}
                   data-testid="learn-more-btn"
                 >
-                  <i className="fas fa-info-circle mr-2"></i>
+                  <i className="fas fa-info-circle mr-3"></i>
                   Learn More
                 </Button>
               </div>
@@ -577,47 +577,47 @@ export default function Home() {
                 <Separator className="my-8" />
 
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
                     <a 
                       href="https://youtube.com/@technicalwhitehat" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-youtube"
                     >
-                      <i className="fab fa-youtube text-red-400 mr-2"></i>
+                      <i className="fab fa-youtube text-red-400 mr-3 text-lg"></i>
                       YouTube Channel
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
                     <a 
                       href="https://instagram.com/technicalwhitehat" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-instagram"
                     >
-                      <i className="fab fa-instagram text-pink-500 mr-2"></i>
+                      <i className="fab fa-instagram text-pink-500 mr-3 text-lg"></i>
                       Instagram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
                     <a 
                       href="https://t.me/technicalwhitehat" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-telegram"
                     >
-                      <i className="fab fa-telegram text-blue-400 mr-2"></i>
+                      <i className="fab fa-telegram text-blue-400 mr-3 text-lg"></i>
                       Telegram
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 border-purple-300/60 text-white bg-purple-500/20 hover:bg-purple-400/30 px-6 py-3 rounded-xl backdrop-blur-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-400/40 animated-button" asChild>
+                  <Button variant="outline" size="lg" className="modern-button social-button px-6 py-3" asChild>
                     <a 
                       href="https://github.com/technicalwhitehat-yt" 
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid="author-github"
                     >
-                      <i className="fab fa-github text-white mr-2"></i>
+                      <i className="fab fa-github text-white mr-3 text-lg"></i>
                       GitHub
                     </a>
                   </Button>
