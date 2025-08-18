@@ -14,8 +14,8 @@ export default function LikeButton() {
     if (savedLikes) {
       setLikes(parseInt(savedLikes));
     } else {
-      // Initialize with a base count
-      setLikes(1247);
+      // Initialize with 0 likes (fresh start)
+      setLikes(0);
     }
     
     setIsLiked(userLiked === 'true');
@@ -38,25 +38,42 @@ export default function LikeButton() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-40" data-testid="like-button-container">
+    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 max-w-[120px]" data-testid="like-button-container">
       <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        className="w-full"
       >
         <Button
           onClick={handleLike}
-          className={`bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-3 transition-all duration-300 hover:bg-white/20 ${
-            isLiked ? 'text-red-400 border-red-400/50' : 'text-white'
-          }`}
+          className={`
+            w-full min-w-[80px] bg-black/50 backdrop-blur-lg border 
+            ${isLiked 
+              ? 'border-red-500/80 bg-red-500/20 text-red-400 shadow-lg shadow-red-500/30' 
+              : 'border-white/30 bg-white/10 text-white hover:bg-white/20 hover:border-white/50'
+            }
+            rounded-full px-3 py-2 transition-all duration-300 
+            text-xs sm:text-sm font-medium
+            hover:shadow-xl active:scale-95
+          `}
           data-testid="like-btn"
         >
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-center space-x-1.5">
             <motion.i 
-              className={`fas fa-heart ${isLiked ? 'text-red-400' : 'text-white/80'}`}
-              animate={isLiked ? { scale: [1, 1.3, 1] } : {}}
-              transition={{ duration: 0.3 }}
+              className={`fas fa-heart text-base ${isLiked ? 'text-red-400' : 'text-white/90'}`}
+              animate={isLiked ? { 
+                scale: [1, 1.4, 1], 
+                rotate: [0, 15, -15, 0] 
+              } : {}}
+              transition={{ 
+                duration: 0.6, 
+                ease: "easeInOut",
+                times: [0, 0.3, 1]
+              }}
             ></motion.i>
-            <span className="text-sm font-semibold">{likes.toLocaleString()}</span>
+            <span className="font-bold min-w-[20px] text-center">
+              {likes > 0 ? likes.toLocaleString() : '0'}
+            </span>
           </div>
         </Button>
       </motion.div>
