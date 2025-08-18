@@ -21,12 +21,12 @@ function Header() {
           </Link>
           
           <nav className="flex items-center space-x-3 sm:space-x-6">
-            {/* Desktop only - show Pro link */}
-            <div className="hidden sm:block">
-              <Link href="/pro" className={`text-sm text-white/80 hover:text-white transition-colors duration-300 ${location === '/pro' ? 'text-white font-semibold' : ''}`} data-testid="nav-pro">
-                Pro
-              </Link>
-            </div>
+            <Link href="/" className={`text-sm sm:text-base text-white/80 hover:text-white transition-colors duration-300 ${location === '/' ? 'text-white font-semibold' : ''}`} data-testid="nav-home">
+              Home
+            </Link>
+            <Link href="/pro" className={`text-sm sm:text-base text-white/80 hover:text-white transition-colors duration-300 ${location === '/pro' ? 'text-white font-semibold' : ''}`} data-testid="nav-pro">
+              Pro
+            </Link>
             
             {/* Mobile buttons - Show both Get Started and YouTube */}
             <div className="flex sm:hidden space-x-2">

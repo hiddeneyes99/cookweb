@@ -14,8 +14,8 @@ export default function LikeButton() {
     if (savedLikes) {
       setLikes(parseInt(savedLikes));
     } else {
-      // Start from 0 for new users
-      setLikes(0);
+      // Initialize with a base count
+      setLikes(1247);
     }
     
     setIsLiked(userLiked === 'true');
