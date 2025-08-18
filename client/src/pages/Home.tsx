@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "wouter";
 import ModernLoadingScreen from "@/components/ModernLoadingScreen";
+import GitHubStarNotification from "@/components/GitHubStarNotification";
+import LikeButton from "@/components/LikeButton";
 import exampleImage from "@assets/Untitled _1754988628893.png";
 import twhLogo from "@assets/technical white hat 2.0_1754987246786.jpg";
 
@@ -78,6 +80,12 @@ export default function Home() {
     <div className="min-h-screen text-white relative">
       {/* Purple Gradient Background */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#652ca8] via-[#4c1d95] to-[#1e1b4b] -z-10"></div>
+      
+      {/* GitHub Star Notification */}
+      <GitHubStarNotification />
+      
+      {/* Like Button */}
+      <LikeButton />
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/20">
@@ -438,14 +446,14 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <Badge className="bg-green-400/20 text-green-300 border-green-400/30 mb-4">
-              📦 Installation
+              📦 Complete Setup
             </Badge>
             <h2 className="text-4xl font-bold mb-4">
-              Quick{" "}
-              <span className="text-white drop-shadow-2xl">Setup Guide</span>
+              Detailed{" "}
+              <span className="text-white drop-shadow-2xl">Installation Guide</span>
             </h2>
             <p className="text-xl text-white/80 mb-6">
-              Get CookPhish running on your system in just a few commands
+              Complete step-by-step instructions for Android and Kali Linux platforms
             </p>
 
             {/* Download Button */}
@@ -522,8 +530,48 @@ export default function Home() {
                         Termux (Android)
                       </h3>
                       <p className="text-sm text-white/60">
-                        Complete setup for Android devices
+                        Complete setup guide for Android devices
                       </p>
+                    </div>
+                  </div>
+
+                  {/* Termux Download Section */}
+                  <div className="mb-6 p-4 bg-gradient-to-r from-green-500/10 to-green-600/10 rounded-xl border border-green-400/30">
+                    <h4 className="font-bold text-green-300 mb-3">
+                      📱 First: Download Termux App
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <Button
+                        size="sm"
+                        className="bg-green-500 hover:bg-green-600 text-white"
+                        asChild
+                      >
+                        <a
+                          href="https://f-droid.org/packages/com.termux/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid="download-termux-fdroid"
+                        >
+                          <i className="fab fa-android mr-2"></i>
+                          F-Droid (Recommended)
+                        </a>
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="border-green-400/50 text-green-300 hover:bg-green-500/20"
+                        asChild
+                      >
+                        <a
+                          href="https://github.com/termux/termux-app/releases"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid="download-termux-github"
+                        >
+                          <i className="fab fa-github mr-2"></i>
+                          GitHub APK
+                        </a>
+                      </Button>
                     </div>
                   </div>
 
@@ -533,7 +581,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-green-300 font-semibold text-sm">
-                            Step 1: Update packages
+                            Step 1: Update packages (Updates Termux repositories)
                           </span>
                           <button
                             className="copy-button"
@@ -562,7 +610,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-green-300 font-semibold text-sm">
-                            Step 2: Install Git
+                            Step 2: Install Git (Required for cloning repository)
                           </span>
                           <button
                             className="copy-button"
@@ -591,7 +639,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-green-300 font-semibold text-sm">
-                            Step 3: Clone & Run
+                            Step 3: Clone & Run (Downloads and starts CookPhish)
                           </span>
                           <button
                             className="copy-button"
@@ -671,7 +719,7 @@ export default function Home() {
                         Kali Linux / Debian
                       </h3>
                       <p className="text-sm text-white/60">
-                        Professional setup for Linux systems
+                        Professional setup for Linux-based systems
                       </p>
                     </div>
                   </div>
@@ -682,7 +730,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-blue-300 font-semibold text-sm">
-                            Step 1: Update system
+                            Step 1: Update system (Updates package lists and installs)
                           </span>
                           <button
                             className="copy-button"
@@ -711,7 +759,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-blue-300 font-semibold text-sm">
-                            Step 2: Install Git
+                            Step 2: Install Git (Required for repository management)
                           </span>
                           <button
                             className="copy-button"
@@ -740,7 +788,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-blue-300 font-semibold text-sm">
-                            Step 3: Clone & Run
+                            Step 3: Clone & Run (Downloads and executes CookPhish)
                           </span>
                           <button
                             className="copy-button"
@@ -889,6 +937,196 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Usage Section */}
+      <section id="usage" className="py-20 bg-black/10 backdrop-blur-sm">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Badge className="bg-purple-400/20 text-purple-300 border-purple-400/30 mb-4">
+              🚀 How to Use
+            </Badge>
+            <h2 className="text-4xl font-bold mb-4">
+              Usage{" "}
+              <span className="text-white drop-shadow-2xl">Instructions</span>
+            </h2>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              Step-by-step guide to run phishing simulations and understand the tool's features
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Basic Usage */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 hover:border-purple-300/60">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-purple-500/30">
+                      <i className="fas fa-play text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">
+                        Basic Usage
+                      </h3>
+                      <p className="text-sm text-white/60">
+                        Getting started with CookPhish
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="bg-black/30 rounded-lg p-4 border border-purple-400/30">
+                      <h4 className="font-bold text-purple-300 mb-3">
+                        📋 After Installation:
+                      </h4>
+                      <ol className="text-sm text-white/80 space-y-2">
+                        <li>1. Run the script: <code className="bg-black/50 px-2 py-1 rounded text-purple-300">bash CookPhish</code></li>
+                        <li>2. Select phishing template (Instagram, Facebook, etc.)</li>
+                        <li>3. Choose tunneling service (Cloudflared/Tunnelmole)</li>
+                        <li>4. Share the generated link with target</li>
+                        <li>5. Monitor captured credentials in real-time</li>
+                      </ol>
+                    </div>
+
+                    <div className="bg-purple-500/10 rounded-xl p-4 border border-purple-400/30">
+                      <h4 className="font-bold text-purple-300 mb-2">
+                        ⚡ Quick Commands:
+                      </h4>
+                      <div className="text-xs text-white/80 space-y-1">
+                        <div>• <code className="text-purple-300">./CookPhish</code> - Start the tool</div>
+                        <div>• <code className="text-purple-300">Ctrl+C</code> - Stop current session</div>
+                        <div>• <code className="text-purple-300">logs/</code> - View captured data</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Advanced Features */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/10 backdrop-blur-md border border-cyan-300/40 rounded-2xl shadow-xl shadow-cyan-500/20 hover:shadow-2xl hover:shadow-cyan-400/30 transition-all duration-300 hover:border-cyan-300/60">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/30 to-cyan-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-cyan-500/30">
+                      <i className="fas fa-cogs text-2xl text-cyan-400"></i>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">
+                        Advanced Features
+                      </h3>
+                      <p className="text-sm text-white/60">
+                        Professional testing capabilities
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="bg-black/30 rounded-lg p-4 border border-cyan-400/30">
+                      <h4 className="font-bold text-cyan-300 mb-3">
+                        🔐 2FA Bypass Methods:
+                      </h4>
+                      <ul className="text-sm text-white/80 space-y-2">
+                        <li>• TOTP (Google Authenticator/Authy)</li>
+                        <li>• SMS verification bypass</li>
+                        <li>• WhatsApp OTP interception</li>
+                        <li>• Email verification bypass</li>
+                        <li>• Cookie-based session hijacking</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-cyan-500/10 rounded-xl p-4 border border-cyan-400/30">
+                      <h4 className="font-bold text-cyan-300 mb-2">
+                        📊 Data Collection:
+                      </h4>
+                      <div className="text-xs text-white/80 space-y-1">
+                        <div>• IP addresses and geolocation</div>
+                        <div>• User agents and device info</div>
+                        <div>• Login credentials and 2FA codes</div>
+                        <div>• Session cookies and tokens</div>
+                        <div>• Timestamp and interaction logs</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Cookie-based Login Section */}
+          <motion.div
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 backdrop-blur-md border border-orange-400/40 rounded-2xl shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:shadow-orange-400/30 transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-red-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-orange-500/30">
+                    <i className="fas fa-cookie-bite text-2xl text-orange-400"></i>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    Cookie-Based Login Feature
+                  </h3>
+                  <p className="text-white/80">
+                    Advanced session hijacking and authentication bypass technique
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-black/30 rounded-lg p-4 border border-orange-400/30">
+                    <h4 className="font-bold text-orange-300 mb-3">
+                      🍪 How it Works:
+                    </h4>
+                    <ul className="text-sm text-white/80 space-y-2">
+                      <li>• Captures session cookies during login</li>
+                      <li>• Bypasses 2FA using valid sessions</li>
+                      <li>• Maintains persistent access</li>
+                      <li>• Works with all social media platforms</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-black/30 rounded-lg p-4 border border-orange-400/30">
+                    <h4 className="font-bold text-orange-300 mb-3">
+                      ⚠️ Ethical Usage:
+                    </h4>
+                    <ul className="text-sm text-white/80 space-y-2">
+                      <li>• Only for authorized testing</li>
+                      <li>• Educational purposes only</li>
+                      <li>• Get explicit permission</li>
+                      <li>• Follow responsible disclosure</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-orange-500/10 rounded-xl border border-orange-400/30">
+                  <div className="flex items-center mb-2">
+                    <i className="fas fa-exclamation-triangle text-orange-400 mr-2"></i>
+                    <h4 className="font-bold text-orange-300">Important Note:</h4>
+                  </div>
+                  <p className="text-sm text-white/80">
+                    This feature is designed for cybersecurity professionals and ethical hackers. 
+                    Misuse of this tool for malicious purposes is strictly prohibited and may violate laws.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Watch Video Section */}
       <section
         id="videos"
@@ -940,7 +1178,7 @@ export default function Home() {
                   <div className="space-y-6">
                     <div className="aspect-video bg-black/30 rounded-xl border-2 border-green-400/30 relative overflow-hidden group cursor-pointer">
                       <a
-                        href="https://youtube.com/@technicalwhitehat"
+                        href="https://twhtube.blogspot.com/2025/08/cookphish-termux.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         data-testid="android-video"
@@ -1001,7 +1239,7 @@ export default function Home() {
                   <div className="space-y-6">
                     <div className="aspect-video bg-black/30 rounded-xl border-2 border-blue-400/30 relative overflow-hidden group cursor-pointer">
                       <a
-                        href="https://youtube.com/@technicalwhitehat"
+                        href="https://twhtube.blogspot.com/2025/08/cookphish-partical-video-for-kali-linux.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         data-testid="linux-video"

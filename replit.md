@@ -21,6 +21,15 @@ CookPhish is an advanced phishing simulation framework designed for cybersecurit
   - Reduced particle system intensity on mobile devices
   - Disabled heavy CSS animations on mobile for better performance
   - Added mobile-specific optimizations for blur effects and transforms
+- ✅ **Comprehensive Setup Guides and Features (January 18, 2025)**
+  - Enhanced mobile/desktop navigation with responsive GitHub and YouTube buttons
+  - Added comprehensive Android (Termux) installation guide with APK download links
+  - Enhanced Kali Linux installation guide with detailed explanations
+  - Implemented GitHub star notification component with timer-based display
+  - Added interactive like button with local storage persistence
+  - Created comprehensive usage instructions section with cookie-based login details
+  - Added detailed 2FA bypass methods and data collection information
+  - Improved step-by-step installation commands with explanatory descriptions
 
 # User Preferences
 

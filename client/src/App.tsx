@@ -20,13 +20,59 @@ function Header() {
             CookPhish
           </Link>
           
-          <nav className="flex items-center space-x-4 sm:space-x-6">
+          <nav className="flex items-center space-x-3 sm:space-x-6">
             <Link href="/" className={`text-sm sm:text-base text-white/80 hover:text-white transition-colors duration-300 ${location === '/' ? 'text-white font-semibold' : ''}`} data-testid="nav-home">
               Home
             </Link>
             <Link href="/pro" className={`text-sm sm:text-base text-white/80 hover:text-white transition-colors duration-300 ${location === '/pro' ? 'text-white font-semibold' : ''}`} data-testid="nav-pro">
               Pro
             </Link>
+            
+            {/* Mobile buttons */}
+            <div className="flex sm:hidden space-x-2">
+              <a
+                href="https://github.com/technicalwhitehat-yt/CookPhish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-white/10 border border-white/20 rounded-lg text-white text-sm hover:bg-white/20 transition-colors"
+                data-testid="mobile-github-btn"
+              >
+                <i className="fab fa-github"></i>
+              </a>
+              <a
+                href="https://youtube.com/@technicalwhitehat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-red-500 border border-red-400 rounded-lg text-white text-sm hover:bg-red-600 transition-colors"
+                data-testid="mobile-youtube-btn"
+              >
+                <i className="fab fa-youtube"></i>
+              </a>
+            </div>
+            
+            {/* Desktop buttons */}
+            <div className="hidden sm:flex space-x-3">
+              <a
+                href="https://github.com/technicalwhitehat-yt/CookPhish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm hover:bg-white/20 transition-colors flex items-center space-x-2"
+                data-testid="desktop-github-btn"
+              >
+                <i className="fab fa-github"></i>
+                <span>Get Started</span>
+              </a>
+              <a
+                href="https://youtube.com/@technicalwhitehat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-red-500 border border-red-400 rounded-lg text-white text-sm hover:bg-red-600 transition-colors flex items-center space-x-2"
+                data-testid="desktop-youtube-btn"
+              >
+                <i className="fab fa-youtube"></i>
+                <span>YouTube</span>
+              </a>
+            </div>
           </nav>
         </div>
       </div>
