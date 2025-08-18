@@ -1119,8 +1119,8 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 backdrop-blur-md border border-orange-400/40 rounded-2xl shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:shadow-orange-400/30 transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="bg-gradient-to-r from-orange-500/5 to-red-500/5 backdrop-blur-md border border-orange-400/40 rounded-2xl shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:shadow-orange-400/30 transition-all duration-300">
+              <CardContent className="p-8 bg-black/50 rounded-2xl backdrop-blur-sm">
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-red-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-orange-500/30">
                     <i className="fas fa-cookie-bite text-2xl text-orange-400"></i>
