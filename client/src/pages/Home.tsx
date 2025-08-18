@@ -14,6 +14,7 @@ import twhLogo from "@assets/technical white hat 2.0_1754987246786.jpg";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Optimized scroll handling with throttling for better mobile performance
   useEffect(() => {
@@ -89,38 +90,40 @@ export default function Home() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/20">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
+            {/* Logo Section - Mobile Responsive */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="group cursor-pointer">
-                <div className="text-3xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-2xl tracking-wide transform transition-all duration-300 group-hover:scale-105">
+                <div className="text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-2xl tracking-wide transform transition-all duration-300 group-hover:scale-105">
                   CookPhish
                 </div>
               </div>
               <Badge
                 variant="secondary"
-                className="text-white border-white/30 bg-transparent"
+                className="text-white border-white/30 bg-transparent text-xs sm:text-sm"
               >
                 v3.0.0
               </Badge>
             </div>
 
-            <div className="hidden md:flex space-x-2">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex space-x-2">
               {[
                 { id: "features", label: "Features", icon: "fas fa-star" },
+                { id: "videos", label: "Videos", icon: "fas fa-play" },
                 {
                   id: "installation",
-                  label: "Installation",
+                  label: "Installation", 
                   icon: "fas fa-download",
                 },
-                { id: "videos", label: "Videos", icon: "fas fa-play" },
                 { id: "usage", label: "Usage", icon: "fas fa-rocket" },
                 { id: "author", label: "Author", icon: "fas fa-user" },
               ].map(({ id, label, icon }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`nav-link-button group relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
+                  className={`nav-link-button group relative px-3 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
                     activeSection === id
                       ? "text-white bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 shadow-lg shadow-cyan-500/20"
                       : "text-white/80 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20 hover:shadow-md"
@@ -129,7 +132,7 @@ export default function Home() {
                 >
                   <div className="flex items-center space-x-2">
                     <i className={`${icon} text-sm`}></i>
-                    <span>{label}</span>
+                    <span className="text-sm">{label}</span>
                   </div>
                   {activeSection === id && (
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div>
@@ -140,22 +143,23 @@ export default function Home() {
               {/* Pro Link Button */}
               <Link href="/pro">
                 <button
-                  className="nav-link-button group relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 text-white/80 hover:text-white hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 border border-transparent hover:border-purple-400/30 hover:shadow-lg hover:shadow-purple-500/20"
+                  className="nav-link-button group relative px-3 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 text-white/80 hover:text-white hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 border border-transparent hover:border-purple-400/30 hover:shadow-lg hover:shadow-purple-500/20"
                   data-testid="nav-pro"
                 >
                   <div className="flex items-center space-x-2">
                     <i className="fas fa-crown text-sm text-purple-400"></i>
-                    <span>Pro</span>
+                    <span className="text-sm">Pro</span>
                   </div>
                 </button>
               </Link>
             </div>
 
-            <div className="flex space-x-3">
+            {/* Action Buttons + Mobile Menu - Mobile Responsive */}
+            <div className="flex items-center space-x-1.5 sm:space-x-3">
               <Button
                 variant="outline"
                 size="sm"
-                className="group relative overflow-hidden bg-transparent border-2 border-white/30 text-white font-semibold px-4 py-2 rounded-xl transition-all duration-300 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105"
+                className="group relative overflow-hidden bg-transparent border-2 border-white/30 text-white font-semibold px-2 sm:px-4 py-2 rounded-xl transition-all duration-300 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105"
                 asChild
               >
                 <a
@@ -165,15 +169,15 @@ export default function Home() {
                   data-testid="github-btn"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center space-x-2">
-                    <i className="fab fa-github text-lg"></i>
-                    <span>Get Started</span>
+                  <div className="relative flex items-center space-x-1 sm:space-x-2">
+                    <i className="fab fa-github text-base sm:text-lg"></i>
+                    <span className="hidden sm:block">GitHub</span>
                   </div>
                 </a>
               </Button>
               <Button
                 size="sm"
-                className="group relative overflow-hidden bg-gradient-to-r from-red-500 to-red-600 border border-red-400 text-white font-semibold px-4 py-2 rounded-xl transition-all duration-300 hover:from-red-400 hover:to-red-500 hover:shadow-xl hover:shadow-red-500/50 hover:scale-105 shadow-lg shadow-red-500/30"
+                className="group relative overflow-hidden bg-gradient-to-r from-red-500 to-red-600 border border-red-400 text-white font-semibold px-2 sm:px-4 py-2 rounded-xl transition-all duration-300 hover:from-red-400 hover:to-red-500 hover:shadow-xl hover:shadow-red-500/50 hover:scale-105 shadow-lg shadow-red-500/30"
                 asChild
               >
                 <a
@@ -184,38 +188,93 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-red-300/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-500/40 to-red-600/40 rounded-xl blur opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center space-x-2">
-                    <i className="fab fa-youtube text-lg drop-shadow-sm"></i>
-                    <span>YouTube</span>
+                  <div className="relative flex items-center space-x-1 sm:space-x-2">
+                    <i className="fab fa-youtube text-base sm:text-lg drop-shadow-sm"></i>
+                    <span className="hidden sm:block">YouTube</span>
                   </div>
                 </a>
               </Button>
+              
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-xl bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+                data-testid="mobile-menu-btn"
+              >
+                <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-lg`}></i>
+              </button>
             </div>
           </div>
+          
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="lg:hidden mt-4 p-4 bg-black/20 backdrop-blur-lg rounded-2xl border border-white/20"
+            >
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { id: "features", label: "Features", icon: "fas fa-star" },
+                  { id: "videos", label: "Videos", icon: "fas fa-play" },
+                  {
+                    id: "installation",
+                    label: "Installation", 
+                    icon: "fas fa-download",
+                  },
+                  { id: "usage", label: "Usage", icon: "fas fa-rocket" },
+                  { id: "author", label: "Author", icon: "fas fa-user" },
+                  { id: "pro", label: "Pro", icon: "fas fa-crown" },
+                ].map(({ id, label, icon }) => (
+                  <button
+                    key={id}
+                    onClick={() => {
+                      if (id === "pro") {
+                        window.location.href = "/pro";
+                      } else {
+                        scrollToSection(id);
+                        setIsMobileMenuOpen(false);
+                      }
+                    }}
+                    className={`flex items-center space-x-2 p-3 rounded-xl font-medium transition-all duration-300 ${
+                      activeSection === id
+                        ? "text-white bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30"
+                        : "text-white/80 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20"
+                    }`}
+                    data-testid={`mobile-nav-${id}`}
+                  >
+                    <i className={`${icon} text-sm ${id === "pro" ? "text-purple-400" : ""}`}></i>
+                    <span className="text-sm">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-24 pb-20">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section id="home" className="pt-20 sm:pt-24 pb-12 sm:pb-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8 text-center lg:text-left"
             >
               <div className="space-y-4">
-                <Badge className="bg-white/20 text-white border-white/30 mb-4">
+                <Badge className="bg-white/20 text-white border-white/30 mb-4 text-sm">
                   🔒 Cybersecurity Tool
                 </Badge>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                   <span className="text-white drop-shadow-2xl">CookPhish</span>
                   <br />
                   <span className="text-white/90">Advanced Framework</span>
                 </h1>
-                <p className="text-xl text-white/80 leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                   Professional phishing simulation tool for cybersecurity
                   education and ethical hacking training. Created by Technical
                   White Hat from India.

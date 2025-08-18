@@ -38,41 +38,55 @@ export default function LikeButton() {
   };
 
   return (
-    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 max-w-[120px]" data-testid="like-button-container">
+    <div 
+      className="fixed bottom-4 right-4 z-[9999] pointer-events-auto" 
+      data-testid="like-button-container"
+      style={{ 
+        position: 'fixed',
+        bottom: '16px',
+        right: '16px',
+        zIndex: 9999
+      }}
+    >
       <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="w-full"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ 
+          type: "spring",
+          stiffness: 260,
+          damping: 20
+        }}
       >
         <Button
           onClick={handleLike}
           className={`
-            w-full min-w-[80px] bg-black/50 backdrop-blur-lg border 
+            flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16
             ${isLiked 
-              ? 'border-red-500/80 bg-red-500/20 text-red-400 shadow-lg shadow-red-500/30' 
-              : 'border-white/30 bg-white/10 text-white hover:bg-white/20 hover:border-white/50'
+              ? 'bg-gradient-to-r from-red-500/90 to-pink-500/90 border-red-400/60 text-white shadow-2xl shadow-red-500/50' 
+              : 'bg-gradient-to-r from-gray-800/90 to-gray-700/90 border-white/30 text-white/90 shadow-2xl shadow-black/50'
             }
-            rounded-full px-3 py-2 transition-all duration-300 
-            text-xs sm:text-sm font-medium
-            hover:shadow-xl active:scale-95
+            backdrop-blur-xl border-2 rounded-full transition-all duration-300 
+            hover:shadow-3xl hover:scale-105 active:scale-95
+            font-bold text-xs sm:text-sm
           `}
           data-testid="like-btn"
         >
-          <div className="flex items-center justify-center space-x-1.5">
+          <div className="flex flex-col items-center justify-center space-y-0.5">
             <motion.i 
-              className={`fas fa-heart text-base ${isLiked ? 'text-red-400' : 'text-white/90'}`}
+              className={`fas fa-heart text-lg sm:text-xl ${isLiked ? 'text-white' : 'text-white/90'}`}
               animate={isLiked ? { 
-                scale: [1, 1.4, 1], 
-                rotate: [0, 15, -15, 0] 
+                scale: [1, 1.3, 1], 
+                rotate: [0, 10, -10, 0] 
               } : {}}
               transition={{ 
-                duration: 0.6, 
-                ease: "easeInOut",
-                times: [0, 0.3, 1]
+                duration: 0.5, 
+                ease: "easeOut"
               }}
             ></motion.i>
-            <span className="font-bold min-w-[20px] text-center">
-              {likes > 0 ? likes.toLocaleString() : '0'}
+            <span className="text-xs font-black leading-none">
+              {likes > 0 ? (likes > 999 ? `${Math.floor(likes/1000)}k` : likes) : '0'}
             </span>
           </div>
         </Button>
