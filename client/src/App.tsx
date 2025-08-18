@@ -14,8 +14,7 @@ function Header() {
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
-      <div className="container mx-auto px-4 sm:px-6 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between container mx-auto px-4 sm:px-6 py-4">
           <Link href="/" className="text-xl sm:text-2xl font-bold text-white hover:text-purple-400 transition-colors duration-300" data-testid="header-logo">
             CookPhish
           </Link>
@@ -85,7 +84,6 @@ function Header() {
             </div>
           </nav>
         </div>
-      </div>
     </header>
   );
 }
