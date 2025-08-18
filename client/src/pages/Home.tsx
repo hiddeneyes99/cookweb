@@ -768,7 +768,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-4 lg:gap-8">
             {/* Termux Installation */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -776,16 +776,16 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <Card className="bg-white/10 backdrop-blur-md border border-green-300/40 rounded-2xl shadow-xl shadow-green-500/20 hover:shadow-2xl hover:shadow-green-400/30 transition-all duration-300 hover:border-green-300/60">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-green-500/30 to-green-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-green-500/30">
-                      <i className="fab fa-android text-2xl text-green-400"></i>
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-green-500/30 to-green-600/20 rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg shadow-green-500/30">
+                      <i className="fab fa-android text-xl sm:text-2xl text-green-400"></i>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
                         Termux (Android)
                       </h3>
-                      <p className="text-sm text-white/60">
+                      <p className="text-xs sm:text-sm text-white/60">
                         Complete setup guide for Android devices
                       </p>
                     </div>
@@ -799,10 +799,10 @@ export default function Home() {
                     <div className="mb-4 text-sm text-white/80 bg-black/20 rounded-lg p-3">
                       <p><strong className="text-green-300">What is Termux?</strong> Termux is a powerful Android terminal emulator that provides a Linux environment. It allows you to run Linux commands, install packages, and use development tools directly on your Android device without requiring root access.</p>
                     </div>
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-2 sm:gap-3">
                       <Button
                         size="sm"
-                        className="bg-green-500 hover:bg-green-600 text-white"
+                        className="bg-green-500 hover:bg-green-600 text-white text-xs sm:text-sm px-3 py-2"
                         asChild
                       >
                         <a
@@ -811,14 +811,14 @@ export default function Home() {
                           rel="noopener noreferrer"
                           data-testid="download-termux-direct"
                         >
-                          <i className="fab fa-android mr-2"></i>
-                          Download Termux v0.118.3 (Recommended)
+                          <i className="fab fa-android mr-1 sm:mr-2"></i>
+                          <span className="truncate">Download Termux v0.118.3 (Recommended)</span>
                         </a>
                       </Button>
                       <Button
                         size="sm"
                         variant="outline"
-                        className="border-green-400/50 text-green-300 hover:bg-green-500/20"
+                        className="border-green-400/50 text-green-300 hover:bg-green-500/20 text-xs sm:text-sm px-3 py-2"
                         asChild
                       >
                         <a
@@ -827,8 +827,8 @@ export default function Home() {
                           rel="noopener noreferrer"
                           data-testid="download-termux-github"
                         >
-                          <i className="fab fa-github mr-2"></i>
-                          Other Versions (GitHub)
+                          <i className="fab fa-github mr-1 sm:mr-2"></i>
+                          <span className="truncate">Other Versions (GitHub)</span>
                         </a>
                       </Button>
                     </div>
@@ -837,20 +837,20 @@ export default function Home() {
                   <div className="space-y-4">
                     {/* Step-by-step commands */}
                     <div className="space-y-3">
-                      <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-green-300 font-semibold text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-green-400/30">
+                        <div className="flex items-center justify-between mb-2 gap-2">
+                          <span className="text-green-300 font-semibold text-xs sm:text-sm flex-1">
                             Step 2: Update packages
                           </span>
                           <button
-                            className="copy-button"
+                            className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-green-500/20 hover:bg-green-500/30 rounded border border-green-400/50 text-green-300"
                             onClick={(e) => {
                               navigator.clipboard.writeText(
                                 "pkg update && pkg upgrade -y",
                               );
                               const btn = e.target as HTMLButtonElement;
                               const original = btn.innerHTML;
-                              btn.innerHTML = "✓ Copied!";
+                              btn.innerHTML = "✓";
                               setTimeout(
                                 () => (btn.innerHTML = original),
                                 2000,
@@ -858,10 +858,10 @@ export default function Home() {
                             }}
                             data-testid="copy-termux-update"
                           >
-                            <i className="fas fa-copy mr-1"></i>Copy
+                            <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy</span>
                           </button>
                         </div>
-                        <code className="text-green-300 font-mono text-sm block">
+                        <code className="text-green-300 font-mono text-xs sm:text-sm block break-all">
                           pkg update && pkg upgrade -y
                         </code>
                         <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
@@ -869,20 +869,20 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-green-300 font-semibold text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-green-400/30">
+                        <div className="flex items-center justify-between mb-2 gap-2">
+                          <span className="text-green-300 font-semibold text-xs sm:text-sm flex-1">
                             Step 3: Install Git
                           </span>
                           <button
-                            className="copy-button"
+                            className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-green-500/20 hover:bg-green-500/30 rounded border border-green-400/50 text-green-300"
                             onClick={(e) => {
                               navigator.clipboard.writeText(
                                 "pkg install git -y",
                               );
                               const btn = e.target as HTMLButtonElement;
                               const original = btn.innerHTML;
-                              btn.innerHTML = "✓ Copied!";
+                              btn.innerHTML = "✓";
                               setTimeout(
                                 () => (btn.innerHTML = original),
                                 2000,
@@ -890,10 +890,10 @@ export default function Home() {
                             }}
                             data-testid="copy-termux-git"
                           >
-                            <i className="fas fa-copy mr-1"></i>Copy
+                            <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy</span>
                           </button>
                         </div>
-                        <code className="text-green-300 font-mono text-sm block">
+                        <code className="text-green-300 font-mono text-xs sm:text-sm block break-all">
                           pkg install git -y
                         </code>
                         <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
@@ -901,20 +901,20 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-green-300 font-semibold text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-green-400/30">
+                        <div className="flex items-center justify-between mb-2 gap-2">
+                          <span className="text-green-300 font-semibold text-xs sm:text-sm flex-1">
                             Step 4: Clone & Run
                           </span>
                           <button
-                            className="copy-button"
+                            className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-green-500/20 hover:bg-green-500/30 rounded border border-green-400/50 text-green-300"
                             onClick={(e) => {
                               navigator.clipboard.writeText(
                                 "git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish",
                               );
                               const btn = e.target as HTMLButtonElement;
                               const original = btn.innerHTML;
-                              btn.innerHTML = "✓ Copied!";
+                              btn.innerHTML = "✓";
                               setTimeout(
                                 () => (btn.innerHTML = original),
                                 2000,
@@ -922,13 +922,11 @@ export default function Home() {
                             }}
                             data-testid="copy-termux-clone"
                           >
-                            <i className="fas fa-copy mr-1"></i>Copy
+                            <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy</span>
                           </button>
                         </div>
-                        <code className="text-green-300 font-mono text-sm block break-all">
-                          git clone
-                          https://github.com/technicalwhitehat-yt/CookPhish.git
-                          && cd CookPhish && bash CookPhish
+                        <code className="text-green-300 font-mono text-xs sm:text-sm block break-all overflow-x-auto">
+                          git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish
                         </code>
                         <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
                           <strong>What this does:</strong> Downloads CookPhish from GitHub, navigates to the folder, and starts the tool. This command combines three operations: download, navigate, and execute.
@@ -937,32 +935,29 @@ export default function Home() {
                     </div>
 
                     {/* One-line command */}
-                    <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30 mt-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-bold text-green-300">
+                    <div className="bg-green-500/10 rounded-xl p-3 sm:p-4 border border-green-400/30 mt-6">
+                      <div className="flex items-center justify-between mb-2 gap-2">
+                        <h4 className="font-bold text-green-300 text-xs sm:text-sm flex-1">
                           📱 Recommended: One-Line Installation Automation
                         </h4>
                         <button
-                          className="copy-button"
+                          className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-green-500/20 hover:bg-green-500/30 rounded border border-green-400/50 text-green-300"
                           onClick={(e) => {
                             navigator.clipboard.writeText(
                               "pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish",
                             );
                             const btn = e.target as HTMLButtonElement;
                             const original = btn.innerHTML;
-                            btn.innerHTML = "✓ Copied!";
+                            btn.innerHTML = "✓";
                             setTimeout(() => (btn.innerHTML = original), 2000);
                           }}
                           data-testid="copy-termux-all"
                         >
-                          <i className="fas fa-copy mr-1"></i>Copy All
+                          <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy All</span>
                         </button>
                       </div>
-                      <code className="text-green-300 font-mono text-xs block break-all">
-                        pkg update && pkg upgrade -y && pkg install git -y &&
-                        git clone
-                        https://github.com/technicalwhitehat-yt/CookPhish.git &&
-                        cd CookPhish && bash CookPhish
+                      <code className="text-green-300 font-mono text-xs block break-all overflow-x-auto bg-black/20 p-2 rounded">
+                        pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish
                       </code>
                       <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
                         <strong>Automated Setup:</strong> This single command performs all installation steps automatically. Perfect for quick setup - just copy, paste, and wait for completion.
@@ -980,16 +975,16 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <Card className="bg-white/10 backdrop-blur-md border border-blue-300/40 rounded-2xl shadow-xl shadow-blue-500/20 hover:shadow-2xl hover:shadow-blue-400/30 transition-all duration-300 hover:border-blue-300/60">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/30">
-                      <i className="fab fa-linux text-2xl text-blue-400"></i>
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg shadow-blue-500/30">
+                      <i className="fab fa-linux text-xl sm:text-2xl text-blue-400"></i>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
                         Kali Linux / Debian
                       </h3>
-                      <p className="text-sm text-white/60">
+                      <p className="text-xs sm:text-sm text-white/60">
                         Professional setup for Linux-based systems
                       </p>
                     </div>
@@ -1008,20 +1003,20 @@ export default function Home() {
                   <div className="space-y-4">
                     {/* Step-by-step commands */}
                     <div className="space-y-3">
-                      <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-blue-300 font-semibold text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-blue-400/30">
+                        <div className="flex items-center justify-between mb-2 gap-2">
+                          <span className="text-blue-300 font-semibold text-xs sm:text-sm flex-1">
                             Step 2: Update & Upgrade System
                           </span>
                           <button
-                            className="copy-button"
+                            className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded border border-blue-400/50 text-blue-300"
                             onClick={(e) => {
                               navigator.clipboard.writeText(
                                 "sudo apt update && sudo apt upgrade -y",
                               );
                               const btn = e.target as HTMLButtonElement;
                               const original = btn.innerHTML;
-                              btn.innerHTML = "✓ Copied!";
+                              btn.innerHTML = "✓";
                               setTimeout(
                                 () => (btn.innerHTML = original),
                                 2000,
@@ -1029,10 +1024,10 @@ export default function Home() {
                             }}
                             data-testid="copy-kali-update"
                           >
-                            <i className="fas fa-copy mr-1"></i>Copy
+                            <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy</span>
                           </button>
                         </div>
-                        <code className="text-blue-300 font-mono text-sm block">
+                        <code className="text-blue-300 font-mono text-xs sm:text-sm block break-all">
                           sudo apt update && sudo apt upgrade -y
                         </code>
                         <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
@@ -1040,20 +1035,20 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-blue-300 font-semibold text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-blue-400/30">
+                        <div className="flex items-center justify-between mb-2 gap-2">
+                          <span className="text-blue-300 font-semibold text-xs sm:text-sm flex-1">
                             Step 3: Install Git
                           </span>
                           <button
-                            className="copy-button"
+                            className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded border border-blue-400/50 text-blue-300"
                             onClick={(e) => {
                               navigator.clipboard.writeText(
                                 "sudo apt install git -y",
                               );
                               const btn = e.target as HTMLButtonElement;
                               const original = btn.innerHTML;
-                              btn.innerHTML = "✓ Copied!";
+                              btn.innerHTML = "✓";
                               setTimeout(
                                 () => (btn.innerHTML = original),
                                 2000,
@@ -1061,10 +1056,10 @@ export default function Home() {
                             }}
                             data-testid="copy-kali-git"
                           >
-                            <i className="fas fa-copy mr-1"></i>Copy
+                            <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy</span>
                           </button>
                         </div>
-                        <code className="text-blue-300 font-mono text-sm block">
+                        <code className="text-blue-300 font-mono text-xs sm:text-sm block break-all">
                           sudo apt install git -y
                         </code>
                         <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
@@ -1072,20 +1067,20 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-blue-300 font-semibold text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-blue-400/30">
+                        <div className="flex items-center justify-between mb-2 gap-2">
+                          <span className="text-blue-300 font-semibold text-xs sm:text-sm flex-1">
                             Step 4: Clone & Run
                           </span>
                           <button
-                            className="copy-button"
+                            className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded border border-blue-400/50 text-blue-300"
                             onClick={(e) => {
                               navigator.clipboard.writeText(
                                 "git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish",
                               );
                               const btn = e.target as HTMLButtonElement;
                               const original = btn.innerHTML;
-                              btn.innerHTML = "✓ Copied!";
+                              btn.innerHTML = "✓";
                               setTimeout(
                                 () => (btn.innerHTML = original),
                                 2000,
@@ -1093,13 +1088,11 @@ export default function Home() {
                             }}
                             data-testid="copy-kali-clone"
                           >
-                            <i className="fas fa-copy mr-1"></i>Copy
+                            <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy</span>
                           </button>
                         </div>
-                        <code className="text-blue-300 font-mono text-sm block break-all">
-                          git clone
-                          https://github.com/technicalwhitehat-yt/CookPhish.git
-                          && cd CookPhish && sudo bash CookPhish
+                        <code className="text-blue-300 font-mono text-xs sm:text-sm block break-all overflow-x-auto">
+                          git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish
                         </code>
                         <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
                           <strong>What this does:</strong> Downloads CookPhish from GitHub, enters the directory, and executes the tool with administrator privileges. The 'sudo' is required for system-level operations.
@@ -1108,32 +1101,29 @@ export default function Home() {
                     </div>
 
                     {/* One-line command */}
-                    <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30 mt-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-bold text-blue-300">
+                    <div className="bg-blue-500/10 rounded-xl p-3 sm:p-4 border border-blue-400/30 mt-6">
+                      <div className="flex items-center justify-between mb-2 gap-2">
+                        <h4 className="font-bold text-blue-300 text-xs sm:text-sm flex-1">
                           💻 Recommended: One-Line Installation Automation
                         </h4>
                         <button
-                          className="copy-button"
+                          className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded border border-blue-400/50 text-blue-300"
                           onClick={(e) => {
                             navigator.clipboard.writeText(
                               "sudo apt update && sudo apt upgrade -y && sudo apt install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish",
                             );
                             const btn = e.target as HTMLButtonElement;
                             const original = btn.innerHTML;
-                            btn.innerHTML = "✓ Copied!";
+                            btn.innerHTML = "✓";
                             setTimeout(() => (btn.innerHTML = original), 2000);
                           }}
                           data-testid="copy-kali-all"
                         >
-                          <i className="fas fa-copy mr-1"></i>Copy All
+                          <i className="fas fa-copy mr-1"></i><span className="hidden sm:inline">Copy All</span>
                         </button>
                       </div>
-                      <code className="text-blue-300 font-mono text-xs block break-all">
-                        sudo apt update && sudo apt upgrade -y && sudo apt
-                        install git -y && git clone
-                        https://github.com/technicalwhitehat-yt/CookPhish.git &&
-                        cd CookPhish && sudo bash CookPhish
+                      <code className="text-blue-300 font-mono text-xs block break-all overflow-x-auto bg-black/20 p-2 rounded">
+                        sudo apt update && sudo apt upgrade -y && sudo apt install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish
                       </code>
                       <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
                         <strong>Complete Automation:</strong> This command performs the entire installation process in one go. Perfect for experienced users who want quick deployment without manual intervention.
@@ -1152,9 +1142,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
               <Card className="bg-white/10 backdrop-blur-md border border-yellow-300/40 rounded-2xl shadow-xl shadow-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-400/30 transition-all duration-300">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 rounded-xl flex items-center justify-center mr-3 shadow-lg shadow-yellow-500/30">
                       <i className="fas fa-cog text-lg text-yellow-400"></i>
@@ -1168,12 +1158,12 @@ export default function Home() {
                   </div>
 
                   <div className="bg-black/30 rounded-lg p-3 border border-yellow-400/30">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-yellow-300 font-semibold text-xs">
+                    <div className="flex items-center justify-between mb-1 gap-2">
+                      <span className="text-yellow-300 font-semibold text-xs flex-1">
                         Fix Dependencies (if tool fails to run)
                       </span>
                       <button
-                        className="copy-button text-xs"
+                        className="copy-button flex-shrink-0 text-xs px-2 py-1 bg-yellow-500/20 hover:bg-yellow-500/30 rounded border border-yellow-400/50 text-yellow-300"
                         onClick={(e) => {
                           navigator.clipboard.writeText(
                             "pip install -r requirements.txt",
@@ -1188,7 +1178,7 @@ export default function Home() {
                         <i className="fas fa-copy"></i>
                       </button>
                     </div>
-                    <code className="text-yellow-300 font-mono text-xs block">
+                    <code className="text-yellow-300 font-mono text-xs block break-all">
                       pip install -r requirements.txt
                     </code>
                   </div>
@@ -1196,7 +1186,7 @@ export default function Home() {
               </Card>
 
               <Card className="bg-white/10 backdrop-blur-md border border-purple-300/40 rounded-2xl shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-400/30 transition-all duration-300">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-xl flex items-center justify-center mr-3 shadow-lg shadow-purple-500/30">
                       <i className="fas fa-lightbulb text-lg text-purple-400"></i>

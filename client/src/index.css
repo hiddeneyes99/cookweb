@@ -84,6 +84,40 @@ body {
     font-size: 1.125rem !important;
     line-height: 1.4;
   }
+
+  /* Installation section mobile fixes */
+  code {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+  }
+  
+  /* Copy button improvements for mobile */
+  .copy-button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+  
+  /* Improved scrollable code blocks */
+  code.overflow-x-auto {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  
+  code.overflow-x-auto::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  code.overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  code.overflow-x-auto::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
 }
 
 :root {
