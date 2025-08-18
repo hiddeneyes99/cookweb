@@ -28,29 +28,31 @@ function Header() {
               Pro
             </Link>
             
-            {/* Mobile buttons */}
+            {/* Mobile buttons - Show both Get Started and YouTube */}
             <div className="flex sm:hidden space-x-2">
               <a
                 href="https://github.com/technicalwhitehat-yt/CookPhish"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-white/10 border border-white/20 rounded-lg text-white text-sm hover:bg-white/20 transition-colors"
+                className="px-3 py-1.5 bg-white/10 border border-white/20 rounded-lg text-white text-xs hover:bg-white/20 transition-colors flex items-center"
                 data-testid="mobile-github-btn"
               >
-                <i className="fab fa-github"></i>
+                <i className="fab fa-github mr-1"></i>
+                <span>Get Started</span>
               </a>
               <a
                 href="https://youtube.com/@technicalwhitehat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-red-500 border border-red-400 rounded-lg text-white text-sm hover:bg-red-600 transition-colors"
+                className="px-3 py-1.5 bg-red-500 border border-red-400 rounded-lg text-white text-xs hover:bg-red-600 transition-colors flex items-center"
                 data-testid="mobile-youtube-btn"
               >
-                <i className="fab fa-youtube"></i>
+                <i className="fab fa-youtube mr-1"></i>
+                <span>YouTube</span>
               </a>
             </div>
             
-            {/* Desktop buttons */}
+            {/* Desktop buttons - Show GitHub, YouTube, and Pro */}
             <div className="hidden sm:flex space-x-3">
               <a
                 href="https://github.com/technicalwhitehat-yt/CookPhish"
@@ -72,6 +74,14 @@ function Header() {
                 <i className="fab fa-youtube"></i>
                 <span>YouTube</span>
               </a>
+              <Link
+                href="/pro"
+                className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 rounded-lg text-white text-sm hover:from-purple-500/30 hover:to-pink-500/30 transition-colors flex items-center space-x-2"
+                data-testid="desktop-pro-btn"
+              >
+                <i className="fas fa-crown text-purple-400"></i>
+                <span>Pro</span>
+              </Link>
             </div>
           </nav>
         </div>

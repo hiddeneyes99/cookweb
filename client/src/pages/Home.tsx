@@ -538,22 +538,25 @@ export default function Home() {
                   {/* Termux Download Section */}
                   <div className="mb-6 p-4 bg-gradient-to-r from-green-500/10 to-green-600/10 rounded-xl border border-green-400/30">
                     <h4 className="font-bold text-green-300 mb-3">
-                      📱 First: Download Termux App
+                      📱 Step 1: Download Termux App
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="mb-4 text-sm text-white/80 bg-black/20 rounded-lg p-3">
+                      <p><strong className="text-green-300">What is Termux?</strong> Termux is a powerful Android terminal emulator that provides a Linux environment. It allows you to run Linux commands, install packages, and use development tools directly on your Android device without requiring root access.</p>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3">
                       <Button
                         size="sm"
                         className="bg-green-500 hover:bg-green-600 text-white"
                         asChild
                       >
                         <a
-                          href="https://f-droid.org/packages/com.termux/"
+                          href="https://github.com/termux/termux-app/releases/download/v0.118.3/termux-app_v0.118.3+github-debug_universal.apk"
                           target="_blank"
                           rel="noopener noreferrer"
-                          data-testid="download-termux-fdroid"
+                          data-testid="download-termux-direct"
                         >
                           <i className="fab fa-android mr-2"></i>
-                          F-Droid (Recommended)
+                          Download Termux v0.118.3 (Recommended)
                         </a>
                       </Button>
                       <Button
@@ -569,7 +572,7 @@ export default function Home() {
                           data-testid="download-termux-github"
                         >
                           <i className="fab fa-github mr-2"></i>
-                          GitHub APK
+                          Other Versions (GitHub)
                         </a>
                       </Button>
                     </div>
@@ -581,7 +584,7 @@ export default function Home() {
                       <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-green-300 font-semibold text-sm">
-                            Step 1: Update packages (Updates Termux repositories)
+                            Step 2: Update packages
                           </span>
                           <button
                             className="copy-button"
@@ -605,12 +608,15 @@ export default function Home() {
                         <code className="text-green-300 font-mono text-sm block">
                           pkg update && pkg upgrade -y
                         </code>
+                        <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                          <strong>Description:</strong> This command updates Termux package repositories and upgrades all installed packages to their latest versions. Essential for ensuring compatibility and security.
+                        </div>
                       </div>
 
                       <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-green-300 font-semibold text-sm">
-                            Step 2: Install Git (Required for cloning repository)
+                            Step 3: Install Git
                           </span>
                           <button
                             className="copy-button"
@@ -634,12 +640,15 @@ export default function Home() {
                         <code className="text-green-300 font-mono text-sm block">
                           pkg install git -y
                         </code>
+                        <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                          <strong>Why Git?</strong> Git is required to clone the CookPhish repository from GitHub. It's a version control system that allows us to download and manage the tool's source code.
+                        </div>
                       </div>
 
                       <div className="bg-black/30 rounded-lg p-4 border border-green-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-green-300 font-semibold text-sm">
-                            Step 3: Clone & Run (Downloads and starts CookPhish)
+                            Step 4: Clone & Run
                           </span>
                           <button
                             className="copy-button"
@@ -665,6 +674,9 @@ export default function Home() {
                           https://github.com/technicalwhitehat-yt/CookPhish.git
                           && cd CookPhish && bash CookPhish
                         </code>
+                        <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                          <strong>What this does:</strong> Downloads CookPhish from GitHub, navigates to the folder, and starts the tool. This command combines three operations: download, navigate, and execute.
+                        </div>
                       </div>
                     </div>
 
@@ -672,7 +684,7 @@ export default function Home() {
                     <div className="bg-green-500/10 rounded-xl p-4 border border-green-400/30 mt-6">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-bold text-green-300">
-                          📱 One-Line Installation
+                          📱 Recommended: One-Line Installation Automation
                         </h4>
                         <button
                           className="copy-button"
@@ -696,6 +708,9 @@ export default function Home() {
                         https://github.com/technicalwhitehat-yt/CookPhish.git &&
                         cd CookPhish && bash CookPhish
                       </code>
+                      <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                        <strong>Automated Setup:</strong> This single command performs all installation steps automatically. Perfect for quick setup - just copy, paste, and wait for completion.
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -724,13 +739,23 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Kali Linux Info Section */}
+                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-500/10 to-blue-600/10 rounded-xl border border-blue-400/30">
+                    <h4 className="font-bold text-blue-300 mb-3">
+                      💻 Step 1: Open Kali Linux Terminal
+                    </h4>
+                    <div className="mb-4 text-sm text-white/80 bg-black/20 rounded-lg p-3">
+                      <p><strong className="text-blue-300">About Kali Linux:</strong> Kali Linux is a Debian-based penetration testing distribution designed for cybersecurity professionals. It comes pre-installed with numerous security testing tools and provides a robust environment for ethical hacking and security research.</p>
+                    </div>
+                  </div>
+
                   <div className="space-y-4">
                     {/* Step-by-step commands */}
                     <div className="space-y-3">
                       <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-blue-300 font-semibold text-sm">
-                            Step 1: Update system (Updates package lists and installs)
+                            Step 2: Update & Upgrade System
                           </span>
                           <button
                             className="copy-button"
@@ -754,12 +779,15 @@ export default function Home() {
                         <code className="text-blue-300 font-mono text-sm block">
                           sudo apt update && sudo apt upgrade -y
                         </code>
+                        <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                          <strong>Important:</strong> This command updates package lists and upgrades the entire system. It may take 20-25 minutes to complete as it downloads and installs all system updates for security and compatibility.
+                        </div>
                       </div>
 
                       <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-blue-300 font-semibold text-sm">
-                            Step 2: Install Git (Required for repository management)
+                            Step 3: Install Git
                           </span>
                           <button
                             className="copy-button"
@@ -783,12 +811,15 @@ export default function Home() {
                         <code className="text-blue-300 font-mono text-sm block">
                           sudo apt install git -y
                         </code>
+                        <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                          <strong>Why Git?</strong> Git is essential for cloning repositories from GitHub. It's a distributed version control system that allows us to download and manage the CookPhish source code efficiently.
+                        </div>
                       </div>
 
                       <div className="bg-black/30 rounded-lg p-4 border border-blue-400/30">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-blue-300 font-semibold text-sm">
-                            Step 3: Clone & Run (Downloads and executes CookPhish)
+                            Step 4: Clone & Run
                           </span>
                           <button
                             className="copy-button"
@@ -814,6 +845,9 @@ export default function Home() {
                           https://github.com/technicalwhitehat-yt/CookPhish.git
                           && cd CookPhish && sudo bash CookPhish
                         </code>
+                        <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                          <strong>What this does:</strong> Downloads CookPhish from GitHub, enters the directory, and executes the tool with administrator privileges. The 'sudo' is required for system-level operations.
+                        </div>
                       </div>
                     </div>
 
@@ -821,7 +855,7 @@ export default function Home() {
                     <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-400/30 mt-6">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-bold text-blue-300">
-                          💻 One-Line Installation
+                          💻 Recommended: One-Line Installation Automation
                         </h4>
                         <button
                           className="copy-button"
@@ -845,6 +879,9 @@ export default function Home() {
                         https://github.com/technicalwhitehat-yt/CookPhish.git &&
                         cd CookPhish && sudo bash CookPhish
                       </code>
+                      <div className="mt-2 text-xs text-white/70 bg-black/20 rounded p-2">
+                        <strong>Complete Automation:</strong> This command performs the entire installation process in one go. Perfect for experienced users who want quick deployment without manual intervention.
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -877,7 +914,7 @@ export default function Home() {
                   <div className="bg-black/30 rounded-lg p-3 border border-yellow-400/30">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-yellow-300 font-semibold text-xs">
-                        Install Python packages
+                        Fix Dependencies (if tool fails to run)
                       </span>
                       <button
                         className="copy-button text-xs"
@@ -996,13 +1033,19 @@ export default function Home() {
                     </div>
 
                     <div className="bg-purple-500/10 rounded-xl p-4 border border-purple-400/30">
-                      <h4 className="font-bold text-purple-300 mb-2">
-                        ⚡ Quick Commands:
+                      <h4 className="font-bold text-purple-300 mb-3">
+                        🎯 Tool Execution Options:
                       </h4>
-                      <div className="text-xs text-white/80 space-y-1">
-                        <div>• <code className="text-purple-300">./CookPhish</code> - Start the tool</div>
-                        <div>• <code className="text-purple-300">Ctrl+C</code> - Stop current session</div>
-                        <div>• <code className="text-purple-300">logs/</code> - View captured data</div>
+                      <div className="text-sm text-white/80 space-y-3">
+                        <div className="bg-black/30 rounded p-2">
+                          <div><strong className="text-purple-300">After running, select method:</strong></div>
+                          <div>1. <span className="text-green-300">Localhost</span> - Works only on local network (LAN)</div>
+                          <div>2. <span className="text-blue-300">Cloudflare</span> - Best for global/WAN access</div>
+                          <div>3. <span className="text-yellow-300">Tunnelmole</span> - Backup if Cloudflare fails</div>
+                        </div>
+                        <div className="text-xs">
+                          <strong>Generated Link:</strong> Creates URLs like <code className="text-cyan-300">https://cloud-justin-governments-entities.trycloudflare.com</code>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1047,15 +1090,20 @@ export default function Home() {
                     </div>
 
                     <div className="bg-cyan-500/10 rounded-xl p-4 border border-cyan-400/30">
-                      <h4 className="font-bold text-cyan-300 mb-2">
-                        📊 Data Collection:
+                      <h4 className="font-bold text-cyan-300 mb-3">
+                        📊 Real-time Monitoring:
                       </h4>
-                      <div className="text-xs text-white/80 space-y-1">
-                        <div>• IP addresses and geolocation</div>
-                        <div>• User agents and device info</div>
-                        <div>• Login credentials and 2FA codes</div>
-                        <div>• Session cookies and tokens</div>
-                        <div>• Timestamp and interaction logs</div>
+                      <div className="text-sm text-white/80 space-y-2">
+                        <div><strong>When target visits link:</strong></div>
+                        <ul className="text-xs space-y-1 ml-4">
+                          <li>• Shows Instagram-like login page</li>
+                          <li>• Terminal displays: timestamp, user agent, device info, Android version</li>
+                          <li>• Captures IP address and location data</li>
+                          <li>• Wrong password = red "wrong password" message</li>
+                          <li>• Correct password = green success with credentials captured</li>
+                          <li>• If 2FA enabled: prompts for verification code</li>
+                          <li>• All data saved to output files automatically</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -1111,15 +1159,50 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-orange-500/10 rounded-xl border border-orange-400/30">
-                  <div className="flex items-center mb-2">
-                    <i className="fas fa-exclamation-triangle text-orange-400 mr-2"></i>
-                    <h4 className="font-bold text-orange-300">Important Note:</h4>
+                <div className="grid md:grid-cols-1 gap-4 mt-6">
+                  <div className="bg-black/30 rounded-lg p-4 border border-orange-400/30">
+                    <h4 className="font-bold text-orange-300 mb-3">
+                      🍪 How to Use Cookie-Based Login:
+                    </h4>
+                    <div className="text-sm text-white/80 space-y-3">
+                      <div><strong>Step 1:</strong> Install browser with extension support:</div>
+                      <div className="ml-4 space-y-1">
+                        <div>• <strong className="text-green-300">Lemur Browser (Recommended):</strong></div>
+                        <a href="https://play.google.com/store/apps/details?id=com.lemurbrowser.exts" 
+                           className="text-cyan-300 hover:text-cyan-200 underline text-xs block ml-2">
+                          https://play.google.com/store/apps/details?id=com.lemurbrowser.exts
+                        </a>
+                        <div>• Alternatives: Kiwi Browser, Firefox Browser</div>
+                      </div>
+                      
+                      <div><strong>Step 2:</strong> Install Cookies Editor Extension:</div>
+                      <div className="ml-4">
+                        <a href="https://chromewebstore.google.com/detail/cookie-editor/gigiddbkofmmehoipndncpadfopebjfh" 
+                           className="text-cyan-300 hover:text-cyan-200 underline text-xs">
+                          Cookie Editor Extension Link
+                        </a>
+                      </div>
+                      
+                      <div><strong>Step 3:</strong> After CookPhish captures session:</div>
+                      <div className="ml-4 text-xs">
+                        • Copy the session ID value from CookPhish
+                        <br/>• Open Instagram in Lemur Browser
+                        <br/>• Use Cookies Editor to add the captured session
+                        <br/>• Refresh page - you'll be logged in without password
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-sm text-white/80">
-                    This feature is designed for cybersecurity professionals and ethical hackers. 
-                    Misuse of this tool for malicious purposes is strictly prohibited and may violate laws.
-                  </p>
+                  
+                  <div className="bg-orange-500/10 rounded-xl p-4 border border-orange-400/30">
+                    <div className="flex items-center mb-2">
+                      <i className="fas fa-exclamation-triangle text-orange-400 mr-2"></i>
+                      <h4 className="font-bold text-orange-300">Ethical Usage Only:</h4>
+                    </div>
+                    <p className="text-sm text-white/80">
+                      This feature is designed for cybersecurity professionals and authorized testing only. 
+                      Misuse for malicious purposes is strictly prohibited and may violate laws. Always get explicit permission before testing.
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>

@@ -1,0 +1,87 @@
+Now Main chahta hun jo quick setup guide hai usmein pura setup info ho tool ka like Android ke liye pura setup information vaise hi alag se kali Linux ke liye setup hoga.
+
+Aur ha har step ke niche uske bare me short discription likhna jaise termux download kar raha hai to kya hai kyu use hota hai waise agar update and upgrade kar raha hai to usse kya hoga ya sab short me likh te jaana hai.
+
+Android:-
+
+Step 1:- install termux ok mobile and this is termux link :- https://github.com/termux/termux-app/releases/download/v0.118.3/termux-app_v0.118.3+github-debug_universal.apk
+
+Aur yaha short short description termux ke bare me likhna ki termux kya hai aur kya kaam me aata hai
+
+Step 2:- now update and upgrade command for Termux "pkg update && pkg upgrade -y"
+
+Yaha is command ke bare me short description likhna .
+
+Step 3:- install git 
+"pkg install git -y"
+
+Yaha git kyu install kar rahe hai aur uska kya kaam hai vah likhna 
+
+Step 4:- clone and run 
+"git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish"
+
+Yaha is command ke bare me likhna ya kya karta hai.
+
+
+Aur recommended deke yaha likhna One-line installation automation. 
+"pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && bash CookPhish "
+
+Aur yaha is command ke bare me likhna 
+
+Uske bad likhna yaha se aage kya karna hai jab tool run ho jaaye tab 3 option aaraha hoga select the method bolke 1:- localhost , 2:- cloudflare, 3:- Tunnelmole . Aur ya sab kab use karna hai vah bhi likhna jaise localhost sirf local area me kaam karega aur cloudflare tab use karna hai jab wan ya global pe karna ho aur tunnelmole backup option hai cloudflare ka agar cloudflare Kam nahin karta tab he tunnelmole use kare details me likhna ki ya sab link generate karega aur konsa option best rahega ya log kisi shmj jaaye padhne ke bad Aisa likhna sath me cloudflare ko recommended karna aur bolna ya har case me kaam kar jayega.
+
+Uske bad bolna ya ek link generate karega kuch is type ka hoga https://cloud-justin-governments-entities.trycloudflare.com 
+
+Ab is link me instagram ke tarah page hoga ab jab bhi isme koi bhi user aata hai aur input karega tab safely terminal pe uska website open karne ka time and date dekhaga + uska user agent jisme uska browse info device info Android version info jaisa info milaga uske bad uska IP milega aur bad jab bhi vah type karega vah dekhega jab wrong password dalta hai tab wrong password likh kar aaega aur jab correct darega tab green mein uska correct uska username password aaega uske bad agar uska 2fa on hoga to vah usse bhi bypass karega otherwise shida cookies milega.
+
+Ab  cookies Se kaise login karna hai instagram ID Bina username password dalen uska step dekhana hai.
+
+Sab se pahle koi aisa browser Jo extension ko support karta ho Jaise kuchh example Hai lumer browser, kiwi browser, Firefox browser aur ek browser jo best hai lemur uska link ya raha 
+https://play.google.com/store/apps/details?id=com.lemurbrowser.exts
+
+How to Use (With Cookies Editor Extension)
+
+Install the browser using the link above.
+
+Open the browser and visit the Chrome Web Store.
+
+Search and install the Cookies Editor extension.
+
+Ya to sidha yah extension ka link copy karke lemur browser mein open karne install kar Lene.  Ya raha link.
+https://chromewebstore.google.com/detail/cookie-editor/gigiddbkofmmehoipndncpadfopebjfh?utm_source=item-share-whatsapp
+
+Now ab isme Jo cookphish session I'd value Diya Hai Instagram ke page per jakar open karke add kar dene. Aur agar shmj nahi aaya to Partical video dekhne aur isse ke just niche Partical video hoga jo step-by-step video guides wale section pe leke chala jayega.
+
+
+
+
+Ab kali Linux ke liye 
+
+Tu step 1 Kali Linux ka terminal open karne
+Kali Linux ke bare mein short discription likh dena
+
+Step 2:- update & upgrade system
+"sudo apt update && sudo apt upgrade -y"
+Ismein likhna ki ek command run hone ke bad 20 se 25 minut time lag sakta hai kyunki pura system update karta hai aur iske bare mein Chhota Sa discription likh dena. 
+
+Step 3:-  install git 
+sudo apt install git -y
+Chhota Sa discription 
+
+Step 4:- clone and run 
+"git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish"
+
+Short description
+
+
+Again recommended or one-line installation automation.
+"sudo apt update && sudo apt upgrade -y && sudo apt install git -y && git clone https://github.com/technicalwhitehat-yt/CookPhish.git && cd CookPhish && sudo bash CookPhish"
+Aur is command ke bare mein short deciation likhna.
+
+Accha jo dependencies hai usme sirf ya add karna ki agar tool ko run hone mein koi problem ho to yah command ko run karne
+
+Aur mobile wale me jo header hai usme right side me sirf get started he dekhta hai youtube ka button nahi dekhta usko bhi fix karna.
+
+Aur desktop pe cookphish pro ka header pe nahi dekhta usko bhi add karna 
+
+Aur han yah Ek Aisa chij add karna ki jitne logon Ko Pasand vah like de sake jisse log dekh paaye ki kitne log ko pasand aaya aur ha ya ki aisa chij add karna ki jab website koi open kare tab 30 sec bad ek notification Aaye Jo bole GitHub pe star dene ke liye aur social media pe follow karne
