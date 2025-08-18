@@ -23,7 +23,8 @@ export default function MatrixRain() {
       }, 2000);
     };
 
-    const interval = setInterval(createMatrixChar, 100);
+    // Reduce frequency for better mobile performance
+    const interval = setInterval(createMatrixChar, 250);
 
     return () => {
       clearInterval(interval);

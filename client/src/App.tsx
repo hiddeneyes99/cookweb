@@ -3,9 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { motion } from "framer-motion";
+
 import Home from "@/pages/Home";
 import Pro from "@/pages/Pro";
 import NotFound from "@/pages/not-found";
@@ -80,85 +78,7 @@ function SEOHead({ title, description, path }: { title: string; description: str
   return null;
 }
 
-// Global Desktop Detection Hook
-function useDesktopDetection() {
-  const [showDesktopAlert, setShowDesktopAlert] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
-  useEffect(() => {
-    const checkDevice = () => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-      const isTablet = /ipad|android/i.test(userAgent) && window.innerWidth >= 768;
-      const desktop = !isMobile && window.innerWidth >= 1024;
-      
-      setIsDesktop(desktop);
-      
-      // Show alert only if user is not on mobile/tablet and not on desktop
-      if (!desktop && !isMobile && !isTablet) {
-        setShowDesktopAlert(true);
-      } else {
-        setShowDesktopAlert(false);
-      }
-    };
-
-    // Check on load
-    checkDevice();
-    
-    // Check on resize
-    window.addEventListener('resize', checkDevice);
-    
-    // Check on orientation change (mobile devices)
-    window.addEventListener('orientationchange', () => {
-      setTimeout(checkDevice, 100);
-    });
-
-    return () => {
-      window.removeEventListener('resize', checkDevice);
-      window.removeEventListener('orientationchange', checkDevice);
-    };
-  }, []);
-
-  return { showDesktopAlert, setShowDesktopAlert, isDesktop };
-}
-
-// Global Desktop Alert Component
-function GlobalDesktopAlert() {
-  const { showDesktopAlert, setShowDesktopAlert } = useDesktopDetection();
-
-  if (!showDesktopAlert) return null;
-
-  return (
-    <motion.div 
-      className="fixed top-20 left-4 right-4 z-50 max-w-md mx-auto"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Alert className="bg-gradient-to-r from-orange-500/30 to-red-500/30 border border-orange-400/50 backdrop-blur-md shadow-2xl">
-        <i className="fas fa-desktop text-orange-400 text-lg"></i>
-        <AlertDescription className="text-white">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <strong className="text-orange-300">Better Experience:</strong>
-              <br className="sm:hidden" />
-              <span className="text-sm">Switch to desktop or laptop for optimal performance</span>
-            </div>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              className="text-orange-400 hover:text-orange-300 hover:bg-orange-500/20 px-3 py-1 text-xs self-end sm:self-auto"
-              onClick={() => setShowDesktopAlert(false)}
-            >
-              Dismiss
-            </Button>
-          </div>
-        </AlertDescription>
-      </Alert>
-    </motion.div>
-  );
-}
 
 function Router() {
   const [location] = useLocation();
@@ -198,7 +118,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen modern-bg">
-          <GlobalDesktopAlert />
           <Header />
           <div className="pt-16 sm:pt-20">
             <Toaster />

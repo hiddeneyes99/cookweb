@@ -19,15 +19,16 @@ export default function ModernLoadingScreen({ onComplete }: ModernLoadingScreenP
   ];
 
   useEffect(() => {
+    // Faster loading for better mobile experience
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + Math.random() * 15 + 8;
+        const newProgress = prev + Math.random() * 25 + 15; // Faster progress
         
         if (newProgress >= 100) {
           clearInterval(interval);
           setTimeout(() => {
             onComplete();
-          }, 800);
+          }, 300); // Reduced delay
           return 100;
         }
         
@@ -39,7 +40,7 @@ export default function ModernLoadingScreen({ onComplete }: ModernLoadingScreenP
         
         return newProgress;
       });
-    }, 150);
+    }, 100); // Faster updates
 
     return () => clearInterval(interval);
   }, [onComplete, messageIndex, loadingMessages.length]);

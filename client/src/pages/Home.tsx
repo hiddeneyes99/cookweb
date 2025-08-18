@@ -13,32 +13,45 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
 
+  // Optimized scroll handling with throttling for better mobile performance
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const sections = ["home", "features", "installation", "usage", "author"];
-      const scrollPosition = window.scrollY + 100;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const sections = ["home", "features", "installation", "usage", "author"];
+          const scrollPosition = window.scrollY + 100;
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (
-          element &&
-          scrollPosition >= element.offsetTop &&
-          scrollPosition < element.offsetTop + element.offsetHeight
-        ) {
-          setActiveSection(section);
-          break;
-        }
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (
+              element &&
+              scrollPosition >= element.offsetTop &&
+              scrollPosition < element.offsetTop + element.offsetHeight
+            ) {
+              setActiveSection(section);
+              break;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Use instant scroll on mobile for better performance
+      const isMobile = window.innerWidth < 768;
+      element.scrollIntoView({ 
+        behavior: isMobile ? "auto" : "smooth", 
+        block: "start" 
+      });
     }
   };
 

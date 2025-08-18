@@ -44,13 +44,18 @@ export default function ParticleSystem() {
       });
     };
     
+    // Reduce particles for better mobile performance
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 8 : 20;
+    const intervalDelay = isMobile ? 2000 : 1000;
+    
     // Create initial particles
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < particleCount; i++) {
       setTimeout(createParticle, Math.random() * 2000);
     }
     
     // Create particles periodically
-    const interval = setInterval(createParticle, 1000);
+    const interval = setInterval(createParticle, intervalDelay);
     
     return () => {
       clearInterval(interval);
